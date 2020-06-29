@@ -1,3 +1,14 @@
+[Design for new screens](https://drive.google.com/file/d/1gsIiCqvR3kt8DLpLdquqFZTwuN43hXzV/view)
+
+[Overview of current CanLink project](https://docs.google.com/document/d/15T8j8zr6ntBbpHhcsqA15frGLpIhR90sz5vme1U8l0c/edit#)
+
+[The python (Django framework) code that runs on the server,that we hopefully don’t have to deal with](https://github.com/ualbertalib/metadata/tree/CanLink/scripts/canlink-data/code)
+
+A survey of visualizations the deginer (Carlos) suggests:
+
+[Visualization Widgets](https://docs.google.com/spreadsheets/d/1AVSWy4_FZgnBmsnccWEOUgdVMmIJuMaLeW28wqX8Uzk/edit?ts=5ef65707#gid=0)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
