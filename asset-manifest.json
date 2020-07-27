@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/scratch/static/css/main.e011e1e9.chunk.css",
-    "main.js": "/scratch/static/js/main.59caf1de.chunk.js",
-    "main.js.map": "/scratch/static/js/main.59caf1de.chunk.js.map",
-    "runtime-main.js": "/scratch/static/js/runtime-main.755d321b.js",
-    "runtime-main.js.map": "/scratch/static/js/runtime-main.755d321b.js.map",
-    "static/css/2.2926f9db.chunk.css": "/scratch/static/css/2.2926f9db.chunk.css",
-    "static/js/2.7b3c6ab1.chunk.js": "/scratch/static/js/2.7b3c6ab1.chunk.js",
-    "static/js/2.7b3c6ab1.chunk.js.map": "/scratch/static/js/2.7b3c6ab1.chunk.js.map",
-    "index.html": "/scratch/index.html",
-    "precache-manifest.3aa5034d11be20fad61c7b089be6163d.js": "/scratch/precache-manifest.3aa5034d11be20fad61c7b089be6163d.js",
-    "service-worker.js": "/scratch/service-worker.js",
-    "static/css/2.2926f9db.chunk.css.map": "/scratch/static/css/2.2926f9db.chunk.css.map",
-    "static/css/main.e011e1e9.chunk.css.map": "/scratch/static/css/main.e011e1e9.chunk.css.map",
-    "static/js/2.7b3c6ab1.chunk.js.LICENSE.txt": "/scratch/static/js/2.7b3c6ab1.chunk.js.LICENSE.txt",
-    "static/media/canlink.png": "/scratch/static/media/canlink.a83aaa0c.png"
+    "main.css": "/can-link/static/css/main.e011e1e9.chunk.css",
+    "main.js": "/can-link/static/js/main.4feca0de.chunk.js",
+    "main.js.map": "/can-link/static/js/main.4feca0de.chunk.js.map",
+    "runtime-main.js": "/can-link/static/js/runtime-main.8f7ce06b.js",
+    "runtime-main.js.map": "/can-link/static/js/runtime-main.8f7ce06b.js.map",
+    "static/css/2.2926f9db.chunk.css": "/can-link/static/css/2.2926f9db.chunk.css",
+    "static/js/2.7b3c6ab1.chunk.js": "/can-link/static/js/2.7b3c6ab1.chunk.js",
+    "static/js/2.7b3c6ab1.chunk.js.map": "/can-link/static/js/2.7b3c6ab1.chunk.js.map",
+    "index.html": "/can-link/index.html",
+    "precache-manifest.77b589dc40cf0493708227e2102cbe1f.js": "/can-link/precache-manifest.77b589dc40cf0493708227e2102cbe1f.js",
+    "service-worker.js": "/can-link/service-worker.js",
+    "static/css/2.2926f9db.chunk.css.map": "/can-link/static/css/2.2926f9db.chunk.css.map",
+    "static/css/main.e011e1e9.chunk.css.map": "/can-link/static/css/main.e011e1e9.chunk.css.map",
+    "static/js/2.7b3c6ab1.chunk.js.LICENSE.txt": "/can-link/static/js/2.7b3c6ab1.chunk.js.LICENSE.txt",
+    "static/media/canlink.png": "/can-link/static/media/canlink.a83aaa0c.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.755d321b.js",
+    "static/js/runtime-main.8f7ce06b.js",
     "static/css/2.2926f9db.chunk.css",
     "static/js/2.7b3c6ab1.chunk.js",
     "static/css/main.e011e1e9.chunk.css",
-    "static/js/main.59caf1de.chunk.js"
+    "static/js/main.4feca0de.chunk.js"
   ]
 }
