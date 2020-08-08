@@ -1,20 +1,36 @@
 {
   "name": "can-link",
+  "homepage": "http://206.167.181.124:8000/website/templates/website",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "@weknow/react-bubble-chart-d3": "^1.0.12",
+    "autosuggest-highlight": "^3.1.1",
+    "axios": "^0.19.2",
+    "leaflet": "^1.6.0",
+    "material-ui-popup-state": "^1.6.1",
+    "re-resizable": "^6.5.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-hook-form": "^6.0.5",
+    "react-leaflet": "^2.7.0",
+    "react-scripts": "3.4.1",
+    "react-vis": "^1.11.7",
+    "react-wordcloud": "^1.2.6"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
   }
 }
