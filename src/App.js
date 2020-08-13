@@ -23,13 +23,17 @@ import Grid from '@material-ui/core/Grid';
 import { useForm } from "react-hook-form";
 import Suggester from './components/Suggester';
 import UniversitySelect from './components/UniversitySelect';
-import VisualizationBar from './components/VisualizationBar';
+import AboutDialog from './components/AboutDialog';
+import ContactDialog from './components/ContactDialog';
 import FacetMap from './components/FacetMap';
 import WordCloud from './components/WordCloud'
 import ToggleBar from './components/ToggleBar';
 import Bubbles from './components/Bubbles';
+import UniList from './components/UniList'
+import MainPageSearchBar from './components/MainPageSearchBar';
 import { Toolbar } from '@material-ui/core';
 import AnimatedTreeMap from './components/AnimatedTreeMap';
+import { Control } from 'leaflet';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
   popover: {
     pointerEvents: 'none',
   },
+  logo: {
+    flex: 1 
+  }
 }));
 
 function App() {
@@ -56,11 +63,14 @@ function App() {
 
   const [visualization, setVisualization] = useState('map')
 
+  const [shouldShowLandingPage, setShouldShowLandingPage] = useState(true)
+
   const [{ response, universities, subjects, degrees, years, languages, isLoading, isError }, doQuery] = useSOLRQuery();
   
-  const { register, handleSubmit, setValue, errors } = useForm();
+  const { register, handleSubmit, setValue, control, errors } = useForm();
   
   const onSubmit = queryInputs => {
+    setShouldShowLandingPage(false)
     doQuery({...queryInputs, page: 0});
   }
 
@@ -87,15 +97,19 @@ React.useEffect(() => {
 <AppBar  position="static" color="transparent" >
 
   <Toolbar >
- <img src={canLinkLogo} alt={'logo'} height={'50px'} />
+ <span className={classes.logo}><img src={canLinkLogo} alt={'logo'} height={'50px'}   /></span>  <AboutDialog/><ContactDialog/>
   </Toolbar>
    </AppBar>
   
   <div className="App">
-    <div className={classes.root}>
-      
+
     
+    <div className={classes.root}>
+
       <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+      {shouldShowLandingPage ? (<FormControl> <MainPageSearchBar control={control}/></FormControl>
+      ) : (
+      <Fragment>
       <Grid container  >
         <Grid item sm={6} >
             <FormControl> <TextField  style={{ width: "47.9vw" }} variant={'outlined'} type="search" label={"Query"} inputRef={register} name="query"   /></FormControl>
@@ -128,8 +142,11 @@ React.useEffect(() => {
       </Grid>
     
       </Grid>
-
+      </Fragment>)}
       </form>
+
+
+      {shouldShowLandingPage ? ( <div> <UniList/> </div> ): (
       <Grid container spacing={3} style={{padding: '1vw'}}>
   {isError && <div>Something went wrong ...</div>}
  
@@ -173,9 +190,12 @@ React.useEffect(() => {
               )}
           
       </Grid>
+      )}
+   
+  </div>
+  </div>
     </div>
-    </div>
-    </div>
+  
    
   );
 }
