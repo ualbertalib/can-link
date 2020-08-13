@@ -33,7 +33,7 @@ import UniList from './components/UniList'
 import MainPageSearchBar from './components/MainPageSearchBar';
 import { Toolbar } from '@material-ui/core';
 import AnimatedTreeMap from './components/AnimatedTreeMap';
-import { Control } from 'leaflet';
+import Footer from './components/Footer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -96,7 +96,7 @@ React.useEffect(() => {
 <div>
 <AppBar  position="static" color="transparent" >
 
-  <Toolbar >
+  <Toolbar>
  <span className={classes.logo}><img src={canLinkLogo} alt={'logo'} height={'50px'}   /></span>  <AboutDialog/><ContactDialog/>
   </Toolbar>
    </AppBar>
@@ -193,7 +193,9 @@ React.useEffect(() => {
       )}
    
   </div>
+  
   </div>
+  <Footer/>
     </div>
   
    
