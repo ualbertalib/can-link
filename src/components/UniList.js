@@ -14,7 +14,7 @@ import Memorial from "../images/Memorial_University_of_Newfoundland.jpg";
 import Queens from "../images/Queen's_University.jpg";
 import RoyalRoads from "../images/Royal_Roads_University.jpg";
 import Tunis from "../images/Tunis_University.jpg";
-import Montreal from "../images/UniversitÃ©_de_MontrÃ©al.jpg";
+import Montreal from "../images/U_Montreal.jpg";
 import Alberta from "../images/University_of_Alberta.jpg";
 import Guelph from "../images/University_of_Guelph.jpg";
 import Lethbridge from "../images/University_of_Lethbridge.jpg";
@@ -28,7 +28,7 @@ import Victoria from "../images/University_of_Victoria.jpg";
 import Waterloo from "../images/University_of_Waterloo.jpg";
 import York from "../images/York_University.jpg";
 //import Uni1 from "../images/no_logo.jpeg";
-import UAL from "../images/ual-logo.png";
+import UAL from "../images/UA-LIBR-COLOUR.png";
 
 
 const uniImages = [
