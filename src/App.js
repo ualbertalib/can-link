@@ -2,11 +2,9 @@ import React, {useState, Fragment} from 'react';
 import './App.css';
 import useSOLRQuery from './hooks/useSOLRQuery';
 
-import canLinkLogo from './canlink.png';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import FormControl from '@material-ui/core/FormControl';
-import AppBar from '@material-ui/core/AppBar';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -23,17 +21,15 @@ import Grid from '@material-ui/core/Grid';
 import { useForm } from "react-hook-form";
 import Suggester from './components/Suggester';
 import UniversitySelect from './components/UniversitySelect';
-import AboutDialog from './components/AboutDialog';
-import ContactDialog from './components/ContactDialog';
 import FacetMap from './components/FacetMap';
 import WordCloud from './components/WordCloud'
 import ToggleBar from './components/ToggleBar';
 import Bubbles from './components/Bubbles';
 import UniList from './components/UniList'
 import MainPageSearchBar from './components/MainPageSearchBar';
-import { Toolbar } from '@material-ui/core';
 import AnimatedTreeMap from './components/AnimatedTreeMap';
 import Footer from './components/Footer';
+import Header from './components/Header';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,9 +47,6 @@ const useStyles = makeStyles((theme) => ({
   },
   popover: {
     pointerEvents: 'none',
-  },
-  logo: {
-    flex: 1 
   }
 }));
 
@@ -94,12 +87,7 @@ React.useEffect(() => {
   return (
     
 <div>
-<AppBar  position="static" color="transparent" >
-
-  <Toolbar>
- <span className={classes.logo}><img src={canLinkLogo} alt={'logo'} height={'50px'}   /></span>  <AboutDialog/><ContactDialog/>
-  </Toolbar>
-   </AppBar>
+    <Header/>
   
   <div className="App">
 

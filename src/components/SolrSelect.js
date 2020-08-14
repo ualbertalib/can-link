@@ -5,8 +5,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import {Controller} from "react-hook-form";;
 
-
-
 function SolrSelect({control, items = [], title, defaultSelection, width}) {
  
 return (

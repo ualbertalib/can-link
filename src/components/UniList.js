@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Chip from '@material-ui/core/Chip';
+import bigCanLinkImg from '../images/CanLinklogo.png';
 
 import Athabasca from "../images/Athabasca_University.jpg";
 import Brock from "../images/Brock_University.jpg";
@@ -79,8 +79,12 @@ export default function UniList() {
   const classes = useStyles();
 
   return (
+      <Fragment>
+    <div className={classes.uniImages}><img src={bigCanLinkImg} alt={'canLink'}  height={'200px'} /></div>
     <div className={classes.uniImages}>
-      {uniImages.map(image => <img src={image} alt={'logo'} height={'80px'} />)}
+       
+      {uniImages.map(image => <img src={image} alt={'logo'} height={'60px'} />)}
     </div>
+    </Fragment>
   );
 }
