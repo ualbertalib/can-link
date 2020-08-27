@@ -9,6 +9,8 @@ import Typography from '@material-ui/core/Typography'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import uniMapping from '../datasets/uniMapping'
+import UnderlineLink from '@material-ui/core/Link';
+import { Link } from 'react-router-dom'
 
 export default function ThesisDialog({thesis}) {
   const [open, setOpen] = React.useState(false);
@@ -21,6 +23,9 @@ export default function ThesisDialog({thesis}) {
     setOpen(false);
   };
 
+  const preventDefault = (event) => event.preventDefault();
+ 
+
   const descriptionElementRef = React.useRef(null);
   React.useEffect(() => {
     if (open) {
@@ -32,10 +37,13 @@ export default function ThesisDialog({thesis}) {
   }, [open]);
   return (
     <div>
-        <ListItem alignItems="flex-start" >
+        <ListItem alignItems="flex-start" onClick={handleClickOpen}>
             <ListItemText 
-               
-                primary={thesis.title[0].substring(0,30) + '...'}
+                
+                primary={
+                     <UnderlineLink href="#" onClick={preventDefault}>
+                        {thesis.title[0].substring(0,100) + (thesis.title[0].length>100?'...':'')}
+                      </UnderlineLink>}
                 secondary={<React.Fragment>
                     <Typography
                     component="span"
@@ -48,7 +56,7 @@ export default function ThesisDialog({thesis}) {
                     </Typography>
                 </React.Fragment>}
                 />
-                 <Button onClick={handleClickOpen} variant="text" style={{verticalAlign: 'bottom'}} size="small" color="primary">See Abstract...</Button>
+                
         </ListItem>
 
         
@@ -79,9 +87,18 @@ export default function ThesisDialog({thesis}) {
           <Button onClick={handleClose} color="primary">
             Close
           </Button>
-          <Button onClick={handleClose} color="primary">
-            Go to Full Record
+          <Button 
+            component={Link} 
+            color="primary"
+            to={
+              { 
+                  pathname: "/record/" + thesis.id.split('/').pop(),
+                  thesis: thesis
+              } }>
+                      Go to Full Record
           </Button>
+
+
         </DialogActions>
       </Dialog>
     </div>
