@@ -66,6 +66,12 @@ function Home() {
   const onSubmit = queryInputs => {
     setShouldShowLandingPage(false)
     doQuery({...queryInputs, page: 0});
+    // reset the value of the text query, to make sure it carries over from landing page
+    // This is because we use the same name for both text term inputs (landing page and main search page)
+    // to make it simpler to submit the same form.
+    // But, having two fields with the same name in react-hook-form doesn't work 
+    // without this reset.  The field is overwritten once we move to main page.
+    setValue('query', queryInputs.query)
   }
 
   //console.log(watch("Discipline")); // watch input value by passing the name of it
