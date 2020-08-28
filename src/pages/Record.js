@@ -64,7 +64,7 @@ export default function Record() {
         </Typography>
 
         <Box fontWeight='fontWeightBold' className={classes.subheading}>Abstract</Box>
-        <Typography component="div" variant="body2" gutterBottom style={{marginLeft:'12.5%', marginRight:'12.5%'}}>
+        <Typography component="div" variant="body2" gutterBottom style={{marginRight:'12.5%'}}>
             {thesis.abstract} 
         </Typography> 
         </div>
