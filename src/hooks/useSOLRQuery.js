@@ -96,8 +96,8 @@ const useSOLRQuery = () => {
           queryString = (queryString?`${queryString} and `:'') + `institution:${query.Institution.substring(query.Institution.lastIndexOf('/')+1)}`
         }
 
-        if (query.Creator) {
-          queryString = (queryString?`${queryString} and `:'') + `creator:${query.Creator}`
+        if (query.Author) {
+          queryString = (queryString?`${queryString} and `:'') + `creator:${query.Author}`
         }
         
         if (query.Subject) {

@@ -86,7 +86,7 @@ function Home() {
 
 React.useEffect(() => {
   register({ name: 'Subject' });
-  register({ name: 'Creator' });
+  register({ name: 'Author' });
   register({ name: 'Institution' });
 
 }, [register]);
@@ -130,7 +130,7 @@ React.useEffect(() => {
         </Grid>
         
         <Grid item sm={3} >
-            <Suggester  width='23vw' title={'Creator'} suggestType="agents" setValue={setValue}/>
+            <Suggester  width='23vw' title={'Author'} suggestType="agents" setValue={setValue}/>
         </Grid>
         <Grid item sm={3} >
           <Button style={{ width: "10vw", height: "100%"}} variant="outlined" color="primary" type="submit">Search</Button>
