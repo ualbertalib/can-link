@@ -19,6 +19,10 @@ const useStyles = makeStyles({
   },
   title: {
     textDecoration: 'underline'
+  },
+  subheading: {
+    marginBottom:'.7em',
+    marginTop: '1em'
   }
 });
 
@@ -54,12 +58,14 @@ export default function Record() {
         {thesis.degree} 
         </Typography> 
 
+        <Box fontWeight='fontWeightBold' className={classes.subheading}>Subjects</Box>
         <Typography component="div" variant="body1" gutterBottom>
-        <Box fontWeight='fontWeightBold' m={1}>Subjects</Box>{thesis.subject?thesis.subject.map(sub=><span style={{marginRight:'1em'}}>{sub}</span>):''} 
+        {thesis.subject?thesis.subject.map(sub=><span style={{marginRight:'1em'}}>{sub}</span>):''} 
         </Typography>
 
-        <Typography component="div" variant="body2" gutterBottom>
-            <Box fontWeight='fontWeightBold' m={1}>Abstract</Box> {thesis.abstract} 
+        <Box fontWeight='fontWeightBold' className={classes.subheading}>Abstract</Box>
+        <Typography component="div" variant="body2" gutterBottom style={{marginLeft:'12.5%', marginRight:'12.5%'}}>
+            {thesis.abstract} 
         </Typography> 
         </div>
          
