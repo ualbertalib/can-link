@@ -40,9 +40,6 @@ export default function ToggleBar({setVisualization}) {
       <ToggleButton value="subbub" aria-label="subjects" >
         <BubbleChartIcon/> Degrees
       </ToggleButton>
-      <ToggleButton value="lang" aria-label="subjects" >
-        <BubbleChartIcon/> Languages
-      </ToggleButton>
      
     </ToggleButtonGroup>
   );
