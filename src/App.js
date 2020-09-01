@@ -16,7 +16,7 @@ const font =  "'News Cycle', sans-serif";
 const theme = createMuiTheme({
   typography: {
     fontFamily: font,
-    fontSize: 12
+    fontSize: '10pt'
   }
 });
 

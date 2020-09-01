@@ -12,7 +12,21 @@ import uniMapping from '../datasets/uniMapping'
 import UnderlineLink from '@material-ui/core/Link';
 import { Link } from 'react-router-dom'
 
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  title: {
+    fontSize: '12pt'
+  },
+  body: {
+    fontSize: '10pt'
+  }
+}));
+
 export default function ThesisDialog({thesis}) {
+
+  const classes = useStyles();
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -41,13 +55,14 @@ export default function ThesisDialog({thesis}) {
             <ListItemText 
                 
                 primary={
-                     <UnderlineLink href="#" onClick={preventDefault}>
+                     <UnderlineLink href="#" onClick={preventDefault} className={classes.title}>
                         {thesis.title[0].substring(0,100) + (thesis.title[0].length>100?'...':'')}
                       </UnderlineLink>}
                 secondary={<React.Fragment>
                     <Typography
                     component="span"
                     variant="body2"
+                    className={classes.title}
                 //    className={classes.inline}
                     >
                    <div> {thesis.creator[0]}</div>
@@ -68,10 +83,10 @@ export default function ThesisDialog({thesis}) {
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
       >
-        <DialogTitle id="scroll-dialog-title">
-            <div>{thesis.title[0]}</div>
-            <div>{thesis.creator.map(creator=>creator)}</div>
-            <div>{thesis.institution?`${uniMapping[thesis.institution[0]].name}`:''}{thesis.degree?` - ${thesis.degree[0]}`:''} {thesis.year?` - ${thesis.year[0]}`:''}</div>
+        <DialogTitle id="scroll-dialog-title" className={classes.title}>
+            <div className={classes.title}>{thesis.title[0]}</div>
+            <div className={classes.title}>{thesis.creator.map(creator=>creator)}</div>
+            <div className={classes.title}>{thesis.institution?`${uniMapping[thesis.institution[0]].name}`:''}{thesis.degree?` - ${thesis.degree[0]}`:''} {thesis.year?` - ${thesis.year[0]}`:''}</div>
             
         </DialogTitle>
         <DialogContent dividers={true}>
@@ -80,12 +95,12 @@ export default function ThesisDialog({thesis}) {
             ref={descriptionElementRef}
             tabIndex={-1}
           >
-            {thesis.abstract?`${thesis.abstract}`:'No abstract available.'}
+            <div className={classes.body}>{thesis.abstract?`${thesis.abstract}`:'No abstract available.'}</div>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Close
+            <Typography className={classes.body}>Close</Typography>
           </Button>
           <Button 
             component={Link} 
@@ -95,7 +110,7 @@ export default function ThesisDialog({thesis}) {
                   pathname: "/record/" + thesis.id.split('/').pop(),
                   thesis: thesis
               } }>
-                      Go to Full Record
+                      <Typography className={classes.body}>Open Full Record</Typography>
           </Button>
 
 

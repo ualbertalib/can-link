@@ -4,7 +4,6 @@ import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import uniMapping from '../datasets/uniMapping'
 import {
-    Link,
     useParams
   } from "react-router-dom";
   import useSOLRRecordQuery from '../hooks/useSOLRRecordQuery';
@@ -18,11 +17,13 @@ const useStyles = makeStyles({
     margin: '2em'
   },
   title: {
-    textDecoration: 'underline'
+    textDecoration: 'underline',
+    fontSize: '12pt'
   },
   subheading: {
     marginBottom:'.7em',
-    marginTop: '1em'
+    marginTop: '1em',
+    fontSize: '12pt'
   }
 });
 

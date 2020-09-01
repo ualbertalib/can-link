@@ -59,7 +59,7 @@ function Home() {
 
   const [shouldShowLandingPage, setShouldShowLandingPage] = useState(true)
 
-  const [{ response, universities, subjects, degrees, years, languages, isLoading, isError }, doQuery] = useSOLRQuery();
+  const [{ response, universities, subjects, degrees, years, isLoading, isError }, doQuery] = useSOLRQuery();
   
   const { register, handleSubmit, setValue, control, errors } = useForm();
   
