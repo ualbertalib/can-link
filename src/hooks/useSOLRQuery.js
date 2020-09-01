@@ -145,6 +145,8 @@ const useSOLRQuery = () => {
           dispatch({ type: 'FETCH_SUCCESS', payload: payload});
         }
       } catch (error) {
+        console.log("error from solr query:")
+        console.log(error)
         if (!didCancel) {
           dispatch({ type: 'FETCH_FAILURE' });
         }

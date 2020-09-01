@@ -1,4 +1,6 @@
 import React from 'react';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import './App.css';
 import Record from './pages/Record.js'
 import Home from './pages/Home'
@@ -10,12 +12,17 @@ import {
   Link
 } from "react-router-dom";
 
-
+const font =  "'News Cycle', sans-serif";
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: font,
+    fontSize: 12
+  }
+});
 
 function App() {
-
-
   return (
+    <ThemeProvider theme={theme}>
     <Router>
         <Switch>
           <Route path="/record/:recordId">
@@ -26,6 +33,7 @@ function App() {
           </Route>
         </Switch>
     </Router>
+    </ThemeProvider>
   );
 }
 
