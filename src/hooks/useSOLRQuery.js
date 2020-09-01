@@ -89,23 +89,23 @@ const useSOLRQuery = () => {
         
 
         if (query.query) {
-          queryString = `(title:${query.query} or abstract:${query.query})`
+          queryString = `(title:${query.query} OR abstract:${query.query})`
         }
 
         if (query.Institution) {
-          queryString = (queryString?`${queryString} and `:'') + `institution:${query.Institution.substring(query.Institution.lastIndexOf('/')+1)}`
+          queryString = (queryString?`${queryString} AND `:'') + `institution:"${query.Institution}"`
         }
 
         if (query.Author) {
-          queryString = (queryString?`${queryString} and `:'') + `creator:${query.Author}`
+          queryString = (queryString?`${queryString} AND `:'') + `creator:${query.Author}`
         }
         
         if (query.Subject) {
-          queryString = (queryString?`${queryString} and `:'') + `subject:${query.Subject}`
+          queryString = (queryString?`${queryString} AND `:'') + `subject:${query.Subject}`
         }
 
         if (query.from && query.to) {
-          queryString = (queryString?`${queryString} and `:'') + `year:[${query.from} TO ${query.to}]`
+          queryString = (queryString?`${queryString} AND `:'') + `year:[${query.from} TO ${query.to}]`
         }
 
         let rows = 10;

@@ -6,7 +6,7 @@ let uniMapping = {
         },
     "http://canlink.library.ualberta.ca/institution/Memorial_University_of_Newfoundland":
         {
-            "name":"University of Newfoundland",
+            "name":"Memorial University of Newfoundland",
             "coordinates": [47.5720, -52.7327]
         },
     "http://canlink.library.ualberta.ca/institution/Queen's_University":
