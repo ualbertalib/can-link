@@ -178,7 +178,6 @@ React.useEffect(() => {
                              {visualization === 'rdTree' &&   <AnimatedTreeMap data={universities} type="circlePack"/>}
                              {visualization === 'sqTree' &&   <AnimatedTreeMap data={years} type="squarify"/>}
                              {visualization === 'subbub' &&   <Bubbles values={degrees}/>}
-                             {visualization === 'lang' &&   <Bubbles values={languages}/>}
                             </div> 
                         </Grid>
                 </Grid>
