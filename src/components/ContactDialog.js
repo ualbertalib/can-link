@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
@@ -49,7 +49,18 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
+
+const useStyles = makeStyles((theme) => ({
+  buttons: {
+        fontSize: '11pt',
+        marginLeft:'1em'
+    },
+}));
+
 export default function ContactDialog() {
+
+  const classes = useStyles();
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -61,7 +72,7 @@ export default function ContactDialog() {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen} style={{marginLeft:'1em'}}>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen} className={classes.buttons} >
         Contact
       </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>

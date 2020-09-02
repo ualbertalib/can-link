@@ -48,7 +48,16 @@ const useStyles = makeStyles((theme) => ({
   },
   popover: {
     pointerEvents: 'none',
+  },
+  searchButton: {
+    fontSize: '11pt',
+    width: "10vw", 
+    height: "100%"
+  },
+  paging: {
+    fontSize: '10pt'
   }
+
 }));
 
 function Home() {
@@ -133,7 +142,7 @@ React.useEffect(() => {
             <Suggester  width='23vw' title={'Author'} suggestType="agents" setValue={setValue}/>
         </Grid>
         <Grid item sm={3} >
-          <Button style={{ width: "10vw", height: "100%"}} variant="outlined" color="primary" type="submit">Search</Button>
+          <Button className={classes.searchButton} variant="outlined" color="primary" type="submit">Search</Button>
       </Grid>
     
       </Grid>
@@ -153,7 +162,7 @@ React.useEffect(() => {
                   {response.docs[0] ? (
                     <Fragment>
                       <Typography component="span"
-                    variant="body2">Page {response.start/10 + 1} of {Math.ceil(response.numFound/10)}</Typography>
+                    variant="body2" className={classes.paging}>Page {response.start/10 + 1} of {Math.ceil(response.numFound/10)}</Typography>
 
                       <div className={classes.demo}>
                         <List dense={true}>

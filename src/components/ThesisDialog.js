@@ -39,7 +39,6 @@ export default function ThesisDialog({thesis}) {
 
   const preventDefault = (event) => event.preventDefault();
  
-
   const descriptionElementRef = React.useRef(null);
   React.useEffect(() => {
     if (open) {

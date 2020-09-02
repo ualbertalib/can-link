@@ -10,6 +10,9 @@ import canLinkLogo from '../images/CanLinklogo-gray.png';
 const useStyles = makeStyles((theme) => ({
     logo: {
       flex: 1 
+    },
+    buttons: {
+        fontSize: '11pt'
     }
   }));
  
