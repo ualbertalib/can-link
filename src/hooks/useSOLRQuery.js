@@ -29,7 +29,15 @@ const massageResultForVisualizers = ({val, count})=>(
       }
   }
     
-  
+  const extractYearQuery = (queryString) => {
+    return queryString.split(' ').reduce((result, token)=>{
+      if (/\d{4}/.test(token)) {
+        result.push(`OR year:${token}`)
+      } 
+      return result
+    }, []).join(' ')
+    
+  }
 
 const dataFetchReducer = (state, action) => {
   switch (action.type) {
@@ -89,7 +97,9 @@ const useSOLRQuery = () => {
         
 
         if (query.query) {
-          queryString = `(title:${query.query} OR abstract:${query.query})`
+          let yearQuery = extractYearQuery(query.query)
+          queryString = `(title:${query.query} OR abstract:${query.query} OR subject:${query.query} OR creator:${query.query} ${yearQuery})`
+
         }
 
         if (query.Institution) {
