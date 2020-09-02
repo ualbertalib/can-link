@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AboutDialog from './AboutDialog';
 import ContactDialog from './ContactDialog';
 import canLinkLogo from '../images/CanLinklogo-gray.png';
-
+import { Link } from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
     logo: {
       flex: 1 
@@ -20,7 +20,20 @@ export default function Header() {
     return (
         <AppBar  position="static" color="transparent" >
             <Toolbar>
-                <span className={classes.logo}><img src={canLinkLogo} alt={'logo'} height={'50px'}   /></span>  <AboutDialog/><ContactDialog/>
+                <span className={classes.logo} >
+                <Link  to={
+                        { 
+                            pathname: "/"
+                        } }>
+                    <img 
+                        src={canLinkLogo} 
+                        alt={'logo'} 
+                        height={'50px'}
+                        ></img> 
+                </Link>  
+                </span>
+                <AboutDialog/>
+                <ContactDialog/>
             </Toolbar>
         </AppBar>
     )

@@ -13,7 +13,7 @@ import McGill from "../images/McGill_University.jpg";
 import Memorial from "../images/Memorial_University_of_Newfoundland.jpg";
 import Queens from "../images/Queen's_University.jpg";
 import RoyalRoads from "../images/Royal_Roads_University.jpg";
-import Tunis from "../images/Tunis_University.jpg";
+//import Tunis from "../images/Tunis_University.jpg";
 import Montreal from "../images/U_Montreal.jpg";
 import Alberta from "../images/University_of_Alberta.jpg";
 import Guelph from "../images/University_of_Guelph.jpg";
@@ -42,7 +42,7 @@ const uniImages = [
     Memorial,
     Queens,
     RoyalRoads,
-    Tunis,
+   // Tunis,
     Montreal,
     Alberta,
     Guelph,

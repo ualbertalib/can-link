@@ -25,12 +25,11 @@ import FacetMap from '../components/FacetMap';
 import WordCloud from '../components/WordCloud'
 import ToggleBar from '../components/ToggleBar';
 import Bubbles from '../components/Bubbles';
-import UniList from '../components/UniList'
-import MainPageSearchBar from '../components/MainPageSearchBar';
 import AnimatedTreeMap from '../components/AnimatedTreeMap';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
+import { useLocation } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,30 +59,21 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function Home() {
+function Search() {
+
+  const location = useLocation();
 
   const classes = useStyles();
 
   const [visualization, setVisualization] = useState('map')
 
-  const [shouldShowLandingPage, setShouldShowLandingPage] = useState(true)
-
   const [{ response, universities, subjects, degrees, years, isLoading, isError }, doQuery] = useSOLRQuery();
   
-  const { register, handleSubmit, setValue, control, errors } = useForm();
+  const { register, handleSubmit, setValue, errors } = useForm();
   
   const onSubmit = queryInputs => {
-    setShouldShowLandingPage(false)
     doQuery({...queryInputs, page: 0});
-    // reset the value of the text query, to make sure it carries over from landing page
-    // This is because we use the same name for both text term inputs (landing page and main search page)
-    // to make it simpler to submit the same form.
-    // But, having two fields with the same name in react-hook-form doesn't work 
-    // without this reset.  The field is overwritten once we move to main page.
-    setValue('query', queryInputs.query)
   }
-
-  //console.log(watch("Discipline")); // watch input value by passing the name of it
 
   const handlePageChange = (page) => {
     handleSubmit(queryInputs => doQuery({...queryInputs, page: page-1}))()
@@ -92,6 +82,13 @@ function Home() {
   const handleTabBarChange = (tabName) => {
     setVisualization(tabName)
   }
+
+  React.useEffect(() => {
+    if (location.state && location.state.query) {
+      setValue('query', location.state.query)
+      handleSubmit(queryInputs => doQuery({...queryInputs, page: 0}))()
+    }
+ }, [location, setValue]);
 
 React.useEffect(() => {
   register({ name: 'Subject' });
@@ -111,9 +108,7 @@ React.useEffect(() => {
     <div className={classes.root}>
 
       <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
-      {shouldShowLandingPage ? (<FormControl> <MainPageSearchBar control={control}/></FormControl>
-      ) : (
-      <Fragment>
+     
       <Grid container  >
         <Grid item sm={6} >
             <FormControl> <TextField  style={{ width: "47.9vw" }} variant={'outlined'} type="search" label={"Query"} inputRef={register} name="query"   /></FormControl>
@@ -146,13 +141,12 @@ React.useEffect(() => {
       </Grid>
     
       </Grid>
-      </Fragment>)}
       </form>
 
 
-      {shouldShowLandingPage ? ( <div> <UniList/> </div> ): (
+      
       <Grid container spacing={3} style={{padding: '1vw'}}>
-  {isError && <div>Something went wrong ...</div>}
+          {isError && <div>Something went wrong ...</div>}
  
               {isLoading ? (
                 <div>Loading ...</div>
@@ -193,7 +187,7 @@ React.useEffect(() => {
               )}
           
       </Grid>
-      )}
+      
    
   </div>
   
@@ -205,4 +199,4 @@ React.useEffect(() => {
   );
 }
 
-export default Home;
+export default Search;

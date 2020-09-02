@@ -2,14 +2,16 @@ import React from 'react';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import './App.css';
-import Record from './pages/Record.js'
-import Home from './pages/Home'
+import Record from './pages/Record'
+import Search from './pages/Search'
+import Landing from './pages/Landing'
+//import history from "./utils/history";
+
 
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 const font =  "'News Cycle', sans-serif";
@@ -23,16 +25,19 @@ const theme = createMuiTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-    <Router>
-        <Switch>
-          <Route path="/record/:recordId">
-            <Record/>
-          </Route>
-          <Route path="/">
-            <Home/>
-          </Route>
-        </Switch>
-    </Router>
+    <BrowserRouter>
+          <Switch>
+            <Route path="/record/:recordId">
+              <Record/>
+            </Route>
+            <Route path="/search">
+              <Search/>
+            </Route>
+            <Route path="/">
+              <Landing/>
+            </Route>
+          </Switch>
+    </BrowserRouter>
     </ThemeProvider>
   );
 }

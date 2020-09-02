@@ -88,7 +88,6 @@ let uniMapping = {
         {
             "name":"University of Saskatchewan",
             "coordinates": [52.1245611684,-106.626344161],
-
         },
     "http://canlink.library.ualberta.ca/institution/Laurentian_University":
         {
@@ -139,6 +138,11 @@ let uniMapping = {
         {
             "name":"University of Toronto",
             "coordinates": [43.656997372, -79.390331772]
+        },
+        "http://canlink.library.ualberta.ca/institution/University_of_British_Columbia":
+        {
+            "name":"University of British Columbia",
+            "coordinates": [49.2666656, -123.249999]
         }
 }
 
