@@ -31,7 +31,7 @@ const massageResultForVisualizers = ({val, count})=>(
     
   const extractYearQuery = (queryString) => {
     return queryString.split(' ').reduce((result, token)=>{
-      if (/\d{4}/.test(token)) {
+      if (/\b\d{4}\b/.test(token)) {
         result.push(`OR year:${token}`)
       } 
       return result
