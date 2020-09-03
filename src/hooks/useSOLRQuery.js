@@ -103,7 +103,7 @@ const useSOLRQuery = () => {
         }
 
         if (query.Institution) {
-          queryString = (queryString?`${queryString} AND `:'') + `institution:"${query.Institution}"`
+          queryString = (queryString?`${queryString} AND `:'') + `institution_str:"${query.Institution}"`
         }
 
         if (query.Author) {
@@ -144,11 +144,11 @@ const useSOLRQuery = () => {
 
         let payload = {
           response: result.data.response, 
-          universities: result.data.facets.universities.buckets.map(processUniversitiesForVisualizations), 
-          subjects: result.data.facets.subjects.buckets.map(massageResultForVisualizers), 
-          degrees: result.data.facets.degrees.buckets.map(massageResultForVisualizers),
-          years: result.data.facets.years.buckets.map(massageResultForVisualizers),
-          languages: result.data.facets.languages.buckets.map(massageResultForVisualizers)
+          universities: result.data.facets.universities?result.data.facets.universities.buckets.map(processUniversitiesForVisualizations):[], 
+          subjects: result.data.facets.subjects?result.data.facets.subjects.buckets.map(massageResultForVisualizers):[], 
+          degrees: result.data.facets.degrees?result.data.facets.degrees.buckets.map(massageResultForVisualizers):[],
+          years: result.data.facets.years?result.data.facets.years.buckets.map(massageResultForVisualizers):[],
+          languages: result.data.facets.languages?result.data.facets.languages.buckets.map(massageResultForVisualizers):[]
         }
 
         if (!didCancel) {
