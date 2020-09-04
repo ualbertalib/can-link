@@ -1,11 +1,12 @@
 /* eslint-disable no-use-before-define */
-import React from 'react';
+import React, { useContext } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
-import uniMapping from '../datasets/uniMapping'
+//import uniMapping from '../datasets/uniMapping'
+import {UniversityListContext} from '../contexts/UniversityListContext'
 
-const universities = Object.entries(uniMapping);
+
 
 const useStyles = makeStyles({
   option: {
@@ -18,6 +19,8 @@ const useStyles = makeStyles({
 });
 
 export default function UniversitySelect({setValue, width}) {
+  const [uniMapping] = useContext(UniversityListContext)
+  const universities = Object.entries(uniMapping);
   const classes = useStyles();
 
   

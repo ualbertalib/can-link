@@ -20,6 +20,7 @@ import Guelph from "../images/University_of_Guelph.jpg";
 import Lethbridge from "../images/University_of_Lethbridge.jpg";
 import Manitoba from "../images/University_of_Manitoba.jpg";
 import OIT from "../images/University_of_Ontario_Institute_of_Technology.jpg";
+import OCAD from "../images/OCAD.png"
 import Ottawa from "../images/University_of_Ottawa.jpg";
 import Regina from "../images/University_of_Regina.jpg";
 import Saskatchewan from "../images/University_of_Saskatchewan.jpg";
@@ -49,6 +50,7 @@ const uniImages = [
     Lethbridge,
     Manitoba,
     OIT,
+    OCAD,
     Ottawa,
     Regina,
     Saskatchewan,

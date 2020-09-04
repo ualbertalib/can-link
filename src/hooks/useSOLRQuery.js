@@ -1,7 +1,8 @@
-import{ useState, useEffect, useReducer } from 'react';
+import{ useState, useEffect, useReducer, useContext } from 'react';
 import axios from 'axios';
-import uniMapping from '../datasets/uniMapping'
+//import uniMapping from '../datasets/uniMapping'
 import {SOLR_QUERY_URL, FACET_QUERY} from '../constants';
+import { UniversityListContext } from '../contexts/UniversityListContext'
 
 const massageResultForVisualizers = ({val, count})=>(
   {
@@ -18,8 +19,7 @@ const massageResultForVisualizers = ({val, count})=>(
     } 
   })
 
-  const processUniversitiesForVisualizations = ({val, count}) => {
-  
+  const processUniversitiesForVisualizations = (uniMapping) => ({val, count}) => {
       const uniData = uniMapping[val] ;
       const transformed = massageResultForVisualizers({val, count});
       return {
@@ -71,6 +71,7 @@ const dataFetchReducer = (state, action) => {
 };
 
 const useSOLRQuery = () => {
+  const [unuseduniMapping, fetchMappingAsync] = useContext(UniversityListContext)
   const [query, setQuery] = useState({query:null,page:0});
 
   const [state, dispatch] = useReducer(dataFetchReducer, {
@@ -94,12 +95,10 @@ const useSOLRQuery = () => {
       try {
 
         let queryString;
-        
 
         if (query.query) {
           let yearQuery = extractYearQuery(query.query)
           queryString = `(title:${query.query} OR abstract:${query.query} OR subject:${query.query} OR creator:${query.query} ${yearQuery})`
-
         }
 
         if (query.Institution) {
@@ -139,12 +138,17 @@ const useSOLRQuery = () => {
 
         const result = await axios.get(url)
 
+        const uniMapping = await fetchMappingAsync()
+      
+        console.log('the unimapping in the useSolrQuery')
+        console.log(uniMapping)
+
         console.log("result of solr query")
         console.log(result)
 
         let payload = {
           response: result.data.response, 
-          universities: result.data.facets.universities?result.data.facets.universities.buckets.map(processUniversitiesForVisualizations):[], 
+          universities: result.data.facets.universities?result.data.facets.universities.buckets.map(processUniversitiesForVisualizations(uniMapping)):[], 
           subjects: result.data.facets.subjects?result.data.facets.subjects.buckets.map(massageResultForVisualizers):[], 
           degrees: result.data.facets.degrees?result.data.facets.degrees.buckets.map(massageResultForVisualizers):[],
           years: result.data.facets.years?result.data.facets.years.buckets.map(massageResultForVisualizers):[],

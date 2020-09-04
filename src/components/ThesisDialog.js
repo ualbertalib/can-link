@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -8,11 +8,12 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import uniMapping from '../datasets/uniMapping'
+//import uniMapping from '../datasets/uniMapping'
 import UnderlineLink from '@material-ui/core/Link';
 import { Link } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles';
+import {UniversityListContext} from '../contexts/UniversityListContext'
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ThesisDialog({thesis}) {
-
+  const [uniMapping] = useContext(UniversityListContext)
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
@@ -59,15 +60,23 @@ export default function ThesisDialog({thesis}) {
                       </UnderlineLink>}
                 secondary={<React.Fragment>
                     <Typography
-                    component="span"
+                    component="div"
                     variant="body2"
                     className={classes.title}
-                //    className={classes.inline}
                     >
-                   <div> {thesis.creator[0]}</div>
-                   <div>{thesis.institution?`${uniMapping[thesis.institution[0]].name}`:''}{thesis.degree?` - ${thesis.degree[0]}`:''} {thesis.year?` - ${thesis.year[0]}`:''}</div>
+                   {thesis.creator[0]}
+                  
+                    </Typography>
+                    <Typography
+                    component="div"
+                    variant="body2"
+                    className={classes.title}
+                    >
+                  
+                   {thesis.institution?`${uniMapping[thesis.institution[0]].name}`:''}{thesis.degree?` - ${thesis.degree[0]}`:''} {thesis.year?` - ${thesis.year[0]}`:''}
             
                     </Typography>
+
                 </React.Fragment>}
                 />
                 

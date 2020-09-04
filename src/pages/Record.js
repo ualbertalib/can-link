@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Header from '../components/Header'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
-import uniMapping from '../datasets/uniMapping'
+
 import {
     useParams
   } from "react-router-dom";
-  import useSOLRRecordQuery from '../hooks/useSOLRRecordQuery';
+import useSOLRRecordQuery from '../hooks/useSOLRRecordQuery';
 
-  import { makeStyles } from '@material-ui/core/styles';
+import {UniversityListContext} from '../contexts/UniversityListContext'
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   root: {
@@ -29,6 +30,7 @@ const useStyles = makeStyles({
 
 export default function Record() {
     const classes = useStyles();
+    const [uniMapping] = useContext(UniversityListContext)
 
     let { recordId } = useParams(); 
     const [{thesis}] = useSOLRRecordQuery(recordId);

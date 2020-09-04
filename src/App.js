@@ -5,7 +5,8 @@ import './App.css';
 import Record from './pages/Record'
 import Search from './pages/Search'
 import Landing from './pages/Landing'
-//import history from "./utils/history";
+
+import { UniversityListProvider } from './contexts/UniversityListContext'
 
 
 import {
@@ -25,19 +26,21 @@ const theme = createMuiTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-    <BrowserRouter>
-          <Switch>
-            <Route path="/record/:recordId">
-              <Record/>
-            </Route>
-            <Route path="/search">
-              <Search/>
-            </Route>
-            <Route path="/">
-              <Landing/>
-            </Route>
-          </Switch>
-    </BrowserRouter>
+      <UniversityListProvider>
+        <BrowserRouter>
+              <Switch>
+                <Route path="/record/:recordId">
+                  <Record/>
+                </Route>
+                <Route path="/search">
+                  <Search/>
+                </Route>
+                <Route path="/">
+                  <Landing/>
+                </Route>
+              </Switch>
+        </BrowserRouter>
+      </UniversityListProvider>
     </ThemeProvider>
   );
 }
