@@ -66,6 +66,21 @@ export default function Record() {
         {thesis.subject?thesis.subject.map(sub=><span style={{marginRight:'1em'}}>{sub}</span>):''} 
         </Typography>
 
+        <Box fontWeight='fontWeightBold' className={classes.subheading}>Supervisor</Box>
+        <Typography component="div" variant="body1" gutterBottom>
+        {thesis.advisor_name?thesis.advisor_name.map(sub=><div style={{marginRight:'1em'}}>{sub}</div>):''} 
+        </Typography>
+
+        <Box fontWeight='fontWeightBold' className={classes.subheading}>Department or Faculty</Box>
+        <Typography component="div" variant="body1" gutterBottom>
+        {thesis.department?thesis.department.map(sub=><div style={{marginRight:'1em'}}>{sub}</div>):''} 
+        </Typography>
+
+        <Box fontWeight='fontWeightBold' className={classes.subheading}>Discipline</Box>
+        <Typography component="div" variant="body1" gutterBottom>
+        {thesis.discipline?thesis.discipline.map(sub=><div style={{marginRight:'1em'}}>{sub}</div>):''} 
+        </Typography>
+
         <Box fontWeight='fontWeightBold' className={classes.subheading}>Abstract</Box>
         <Typography component="div" variant="body2" gutterBottom style={{marginRight:'12.5%'}}>
             {thesis.abstract} 
