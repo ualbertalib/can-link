@@ -71,7 +71,13 @@ const dataFetchReducer = (state, action) => {
 };
 
 const useSOLRQuery = () => {
-  const [unuseduniMapping, fetchMappingAsync] = useContext(UniversityListContext)
+  // note:  we skip over the first item in the destructured array returned by the
+  // UniversityListContext (which is a shared state variable containing the uni list.
+  // We instead need to force the call to 
+  // get the university mapping for this component, rather than relying on getting it through the state variable
+  // share by the UniversityListContext.  The UniversityListContext call to get the mapping from the server (to put
+  // in its shared state variable) doesn't always finish before this solr search is fired.
+  const [ , fetchMappingAsync] = useContext(UniversityListContext)
   const [query, setQuery] = useState({query:null,page:0});
 
   const [state, dispatch] = useReducer(dataFetchReducer, {
