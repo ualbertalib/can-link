@@ -19,8 +19,8 @@ import Alberta from "../images/University_of_Alberta.jpg";
 import Guelph from "../images/University_of_Guelph.jpg";
 import Lethbridge from "../images/University_of_Lethbridge.jpg";
 import Manitoba from "../images/University_of_Manitoba.jpg";
-import OIT from "../images/University_of_Ontario_Institute_of_Technology.jpg";
 import OCAD from "../images/OCAD.png"
+import OIT from "../images/University_of_Ontario_Institute_of_Technology.jpg";
 import Ottawa from "../images/University_of_Ottawa.jpg";
 import Regina from "../images/University_of_Regina.jpg";
 import Saskatchewan from "../images/University_of_Saskatchewan.jpg";
@@ -29,7 +29,9 @@ import Victoria from "../images/University_of_Victoria.jpg";
 import Waterloo from "../images/University_of_Waterloo.jpg";
 import York from "../images/York_University.jpg";
 //import Uni1 from "../images/no_logo.jpeg";
+import ubc from "../images/ubc.jpg"
 import UAL from "../images/UA-LIBR-COLOUR.png";
+
 
 
 const uniImages = [
@@ -49,8 +51,8 @@ const uniImages = [
     Guelph,
     Lethbridge,
     Manitoba,
-    OIT,
     OCAD,
+    OIT,
     Ottawa,
     Regina,
     Saskatchewan,
@@ -58,6 +60,7 @@ const uniImages = [
     Victoria,
     Waterloo,
     York,
+    ubc,
     UAL
 ]
 
