@@ -55,6 +55,9 @@ const useStyles = makeStyles((theme) => ({
   },
   paging: {
     fontSize: '10pt'
+  },
+  noresults: {
+    color: 'red'
   }
 
 }));
@@ -88,7 +91,7 @@ function Search() {
       setValue('query', location.state.query)
       handleSubmit(queryInputs => doQuery({...queryInputs, page: 0}))()
     }
- }, [location, setValue]);
+ }, [location, setValue, doQuery, handleSubmit]);
 
 React.useEffect(() => {
   register({ name: 'Subject' });
@@ -168,7 +171,7 @@ React.useEffect(() => {
                       <Paginator  handlePageChange={handlePageChange} page={response.start/10 + 1} totalPages={Math.ceil(response.numFound/10)}/>
                       </Fragment>
                   ):(<Typography component="span"
-                  variant="body2">No Results To Show</Typography>)
+                  variant="body2" className={classes.noresults}>No Results To Show</Typography>)
                   }
                     </Grid>
 
