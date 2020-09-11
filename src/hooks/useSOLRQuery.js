@@ -20,12 +20,17 @@ const massageResultForVisualizers = ({val, count})=>(
   })
 
   const processUniversitiesForVisualizations = (uniMapping) => ({val, count}) => {
-      const uniData = uniMapping[val] ;
-      const transformed = massageResultForVisualizers({val, count});
-      return {
+      try {
+        const uniData = uniMapping[val] ;
+        const transformed = massageResultForVisualizers({val, count});
+        return {
           ...transformed,
           coordinates: uniData.coordinates,
           name: uniData.name,
+        }
+      } catch(e) {
+        console.log("error in processing univesity: " + val)
+        throw Error(e)
       }
   }
     

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import Header from '../components/Header'
 import Typography from '@material-ui/core/Typography'
+import Link from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 
 import {
@@ -79,6 +80,11 @@ export default function Record() {
         <Box fontWeight='fontWeightBold' className={classes.subheading}>Discipline</Box>
         <Typography component="div" variant="body1" gutterBottom>
         {thesis.discipline?thesis.discipline.map(sub=><div style={{marginRight:'1em'}}>{sub}</div>):''} 
+        </Typography>
+
+        <Box fontWeight='fontWeightBold' className={classes.subheading}>Link to fulltext</Box>
+        <Typography component="div" variant="body1" gutterBottom>
+        {thesis.link?<a href={thesis.link}>{thesis.link}</a>:''} 
         </Typography>
 
         <Box fontWeight='fontWeightBold' className={classes.subheading}>Abstract</Box>
