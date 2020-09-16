@@ -60,8 +60,7 @@ const uniImages = [
     Victoria,
     Waterloo,
     York,
-    ubc,
-    UAL
+    ubc
 ]
 
 
@@ -77,6 +76,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight:'10vw',
     marginTop: '5vh'
   },
+  UALImage: {
+    marginTop: '3vh'
+  }
   
 }));
 
@@ -85,11 +87,11 @@ export default function UniList() {
 
   return (
       <Fragment>
-    <div className={classes.uniImages}><img src={bigCanLinkImg} alt={'canLink'}  height={'200px'} /></div>
-    <div className={classes.uniImages}>
-       
-      {uniImages.map(image => <img src={image} alt={'logo'} height={'60px'} />)}
-    </div>
+        <div className={classes.uniImages}><img src={bigCanLinkImg} alt={'canLink'}  height={'200px'} /></div>
+        <div className={classes.uniImages}>
+          {uniImages.map(image => <img src={image} alt={'logo'} height={'60px'} />)}
+        </div>
+        <img className={classes.UALImage} src={UAL} alt={'logo'} height={'60px'} />
     </Fragment>
   );
 }
