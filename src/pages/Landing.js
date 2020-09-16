@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+//import '../Landing.css';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -12,6 +12,9 @@ import Footer from '../components/Footer';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    backgroundImage: 'linear-gradient(white, #A8DBF6)',
+    textAlign: 'center',
+    minHeight: '80vh'
   }
 }));
 
@@ -23,12 +26,12 @@ function Landing() {
   return (
     <div>
         <Header/>
-        <div className="App">
+       
             <div className={classes.root}>
                 <MainPageSearchBar/>
                 <UniList/>
             </div>
-        </div>
+     
         <Footer/>
     </div> 
   );

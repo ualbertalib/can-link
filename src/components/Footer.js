@@ -6,7 +6,7 @@ import footerImage from '../images/footer.png';
 
 const useStyles = makeStyles((theme) => ({
     footer: {
-        marginTop: 'calc(1% + 20px)',
+       // marginTop: 'calc(1% + 20px)',
         bottom: 0,
        // margin: 0,
       //  justifyContent: 'center',
