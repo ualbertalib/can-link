@@ -9,7 +9,8 @@ import canLinkLogo from '../images/CanLinklogo-gray.png';
 import { Link } from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
     logo: {
-      flex: 1 
+      flex: 1,
+      marginTop: '5px'
     }
   }));
  
