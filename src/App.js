@@ -27,6 +27,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <UniversityListProvider>
+        <div style={{backgroundImage: 'linear-gradient(white, #A8DBF6)', height:'100%'}}>
         <BrowserRouter>
               <Switch>
                 <Route path="/record/:recordId">
@@ -40,6 +41,7 @@ function App() {
                 </Route>
               </Switch>
         </BrowserRouter>
+        </div>
       </UniversityListProvider>
     </ThemeProvider>
   );

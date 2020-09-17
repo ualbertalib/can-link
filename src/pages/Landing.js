@@ -1,5 +1,4 @@
 import React from 'react';
-//import '../Landing.css';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -12,7 +11,6 @@ import Footer from '../components/Footer';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundImage: 'linear-gradient(white, #A8DBF6)',
     textAlign: 'center',
     minHeight: '80vh'
   }

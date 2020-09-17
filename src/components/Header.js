@@ -19,7 +19,7 @@ export default function Header() {
     const classes = useStyles();
 
     return (
-        <AppBar  position="static" color="transparent" >
+        <AppBar position="static" color="transparent" elevation={0}>
             <Toolbar>
                 <span className={classes.logo} >
                 <Link  to={

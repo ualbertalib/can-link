@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import Header from '../components/Header'
 import Typography from '@material-ui/core/Typography'
-import Link from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 
 import {
@@ -15,8 +14,10 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
   root: {
     width: '100%',
-    //maxWidth: 1500,
-    margin: '2em'
+    flexGrow: 1
+  },
+  text: {
+    margin: '2em',
   },
   title: {
     textDecoration: 'underline',
@@ -42,6 +43,7 @@ export default function Record() {
     return (
         <div><Header/>
         <div className={classes.root}>
+          <div className={classes.text}>
         <Typography component="div" variant="h5" gutterBottom>
             <span className={classes.title}>{thesis.title} </span>
         </Typography> 
@@ -91,6 +93,7 @@ export default function Record() {
         <Typography component="div" variant="body2" gutterBottom style={{marginRight:'12.5%'}}>
             {thesis.abstract} 
         </Typography> 
+        </div>
         </div>
          
         </div>
