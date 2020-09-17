@@ -51,7 +51,8 @@ const useStyles = makeStyles((theme) => ({
   searchButton: {
     fontSize: '11pt',
     width: "10vw", 
-    height: "100%"
+    height: "100%",
+    backgroundColor: '#A8DBF6'
   },
   paging: {
     fontSize: '10pt'
