@@ -5,16 +5,16 @@ import BubbleChartIcon from '@material-ui/icons/BubbleChart';
 import PublicIcon from '@material-ui/icons/Public';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import GroupWorkIcon from '@material-ui/icons/GroupWork';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, fade} from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
-
+import '../App.css';
 
 const useStyles = makeStyles((theme) => ({
   buttons: {
         fontSize: '11pt',
-        marginLeft: '.5em'
-    }
+        marginLeft: '.5em',
+    
+  }
 }));
 
 export default function ToggleBar({setVisualization}) {
@@ -29,6 +29,7 @@ export default function ToggleBar({setVisualization}) {
   };
 
   return (
+    <div  className="App">
     <ToggleButtonGroup
     style={{marginBottom:'1em'}}
       value={value}
@@ -36,7 +37,7 @@ export default function ToggleBar({setVisualization}) {
       onChange={handleChange}
       aria-label="text alignment"
     >
-      <ToggleButton value="map" aria-label="map">
+      <ToggleButton value="map" aria-label="map" >
         <PublicIcon /> <Typography className={classes.buttons}>Map</Typography>
       </ToggleButton>
       <ToggleButton value="cloud" aria-label="word cloud">
@@ -46,12 +47,13 @@ export default function ToggleBar({setVisualization}) {
         <AccountTreeIcon /> <Typography className={classes.buttons}>Treemap</Typography>
       </ToggleButton>
       <ToggleButton value="rdTree" aria-label="xyplot" >
-        <GroupWorkIcon/> <Typography className={classes.buttons}>Bubbles</Typography>
+        <BubbleChartIcon/> <Typography className={classes.buttons}>Bubbles</Typography>
       </ToggleButton>
       <ToggleButton value="subbub" aria-label="subjects" >
         <BubbleChartIcon/> <Typography className={classes.buttons}>Bubbles</Typography>
       </ToggleButton>
      
     </ToggleButtonGroup>
+    </div>
   );
 }

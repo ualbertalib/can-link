@@ -2,15 +2,15 @@ import React from 'react';
 import ReactWordcloud from 'react-wordcloud';
 
   const options = {
-    colors: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'],
+    colors: ['#2EBCEE'],
     enableTooltip: true,
     deterministic: false,
-    fontFamily: 'impact',
+    fontFamily: "'News Cycle', sans-serif",
     fontSizes: [5, 60],
     fontStyle: 'normal',
     fontWeight: 'normal',
     padding: 1,
-    rotations: 3,
+    rotations: 1,
     rotationAngles: [0, 90],
     scale: 'sqrt',
     spiral: 'archimedean',

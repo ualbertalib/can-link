@@ -21,34 +21,8 @@
 import React, {useState} from 'react';
 import {Treemap} from 'react-vis';
 
-function ShowcaseButton(props) {
-  const {buttonContent, onClick} = props;
-  return (
-    <button className="showcase-button" onClick={onClick}>
-      {buttonContent}
-    </button>
-  );
-}
 
-function _getRandomData(total) {
-  const totalLeaves = total || Math.random() * 20;
-  const leaves = [];
-  for (let i = 0; i < totalLeaves; i++) {
-    leaves.push({
-      name: total ? total : String(Math.random()).slice(0, 3),
-      size: Math.random() * 1000,
-      color: Math.random(),
-      style: {
-        border: 'thin solid red'
-      }
-    });
-  }
-  return {
-    title: '',
-    color: 1,
-    children: leaves
-  };
-}
+
 
 
 function getData(data) {

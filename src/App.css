@@ -29,6 +29,16 @@
   color: #61dafb;
 }
 
+.Toggle-button:selected {
+  background-color: red;
+  color: red
+}
+
+.Toggle-button {
+  background-color: red;
+  color: red
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
