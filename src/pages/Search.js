@@ -183,7 +183,7 @@ React.useEffect(() => {
                            <div>
                              {visualization === 'map' && <FacetMap facets={universities} /> }
                              {visualization === 'cloud' && <WordCloud words={subjects} /> }
-                             {visualization === 'rdTree' &&   <AnimatedTreeMap data={universities} type="circlePack"/>}
+                             {visualization === 'rdTree' &&   <Bubbles values={universities} />}
                              {visualization === 'sqTree' &&   <AnimatedTreeMap data={years} type="squarify"/>}
                              {visualization === 'subbub' &&   <Bubbles values={degrees}/>}
                             </div> 

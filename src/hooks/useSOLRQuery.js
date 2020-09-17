@@ -27,6 +27,7 @@ const massageResultForVisualizers = ({val, count})=>(
           ...transformed,
           coordinates: uniData.coordinates,
           name: uniData.name,
+          label: uniData.name
         }
       } catch(e) {
         console.log("error in processing univesity: " + val)
@@ -183,7 +184,7 @@ const useSOLRQuery = () => {
     return () => {
       didCancel = true;
     };
-  }, [query]);
+  }, [fetchMappingAsync, query]);
 
   return [state, setQuery];
 };
