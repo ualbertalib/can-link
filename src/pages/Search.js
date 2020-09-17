@@ -50,10 +50,10 @@ const useStyles = makeStyles((theme) => ({
   },
   searchButton: {
     fontSize: '11pt',
-    width: "10vw", 
+    width: "11.5vw", 
     height: "100%",
     backgroundColor: '#A8DBF6',
-    marginRight:'.9vw'
+    marginRight:'.41vw'
   },
   paging: {
     fontSize: '10pt'
@@ -114,9 +114,9 @@ React.useEffect(() => {
 
       <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
      
-      <Grid container  >
+      <Grid container  spacing={1} >
         <Grid item sm={6} >
-            <FormControl> <TextField  style={{ width: "47.9vw" }} variant={'outlined'} type="search" label={"Query"} inputRef={register} name="query"   /></FormControl>
+            <FormControl> <TextField  style={{ width: "47.5vw" }} variant={'outlined'} type="search" label={"Query"} inputRef={register} name="query"   /></FormControl>
         </Grid>
 
         <Grid item sm={3}  >
@@ -131,15 +131,15 @@ React.useEffect(() => {
       </Grid>
       <Grid container spacing={1} >
         <Grid item sm={3} >
-            <UniversitySelect width='23vw' setValue={setValue}/>
+        <FormControl> <UniversitySelect width='23vw' setValue={setValue}/> </FormControl>
         </Grid>
         
         <Grid item sm={3} >
-            <Suggester  width='23.5vw' title={'Subject'} suggestType="subjects" setValue={setValue}/>
+        <FormControl> <Suggester  width='23vw' title={'Subject'} suggestType="subjects" setValue={setValue}/> </FormControl>
         </Grid>
         
         <Grid item sm={3} >
-            <Suggester  width='23vw' title={'Author'} suggestType="agents" setValue={setValue}/>
+        <FormControl> <Suggester  width='23vw' title={'Author'} suggestType="agents" setValue={setValue}/> </FormControl>
         </Grid>
         <Grid item sm={3} style={{textAlign:'right'}}>
             <Button className={classes.searchButton} variant="outlined" color="primary" type="submit">Search</Button>
