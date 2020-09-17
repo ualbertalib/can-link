@@ -40,16 +40,16 @@ export default function ToggleBar({setVisualization}) {
         <PublicIcon /> <Typography className={classes.buttons}>Map</Typography>
       </ToggleButton>
       <ToggleButton value="cloud" aria-label="word cloud">
-        <CloudQueueIcon /> <Typography className={classes.buttons}>Subjects</Typography>
+        <CloudQueueIcon /> <Typography className={classes.buttons}>Wordcloud</Typography>
       </ToggleButton>
       <ToggleButton value="sqTree" aria-label="tree map">
-        <AccountTreeIcon /> <Typography className={classes.buttons}>Years</Typography>
+        <AccountTreeIcon /> <Typography className={classes.buttons}>Treemap</Typography>
       </ToggleButton>
       <ToggleButton value="rdTree" aria-label="xyplot" >
-        <GroupWorkIcon/> <Typography className={classes.buttons}>Universities</Typography>
+        <GroupWorkIcon/> <Typography className={classes.buttons}>Bubbles</Typography>
       </ToggleButton>
       <ToggleButton value="subbub" aria-label="subjects" >
-        <BubbleChartIcon/> <Typography className={classes.buttons}>Degrees</Typography>
+        <BubbleChartIcon/> <Typography className={classes.buttons}>Bubbles</Typography>
       </ToggleButton>
      
     </ToggleButtonGroup>
