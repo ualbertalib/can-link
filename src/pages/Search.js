@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   },
   searchButton: {
     fontSize: '11pt',
-    width: "11.5vw", 
+    width: "23vw", 
     height: "100%",
     backgroundColor: '#A8DBF6',
     marginRight:'.41vw'
@@ -120,13 +120,13 @@ React.useEffect(() => {
         </Grid>
 
         <Grid item sm={3}  >
-        <FormControl> <TextField  style={{ width: "23vw" }} variant={'outlined'} type="number" label={"From Year"} inputRef={register({ min: 1000, max: 9999 })} name="from"   /> {errors.from && "Year must be four digits"}</FormControl>
+        <FormControl> <TextField  style={{ width: "11vw" }} variant={'outlined'} type="number" label={"From Year"} inputRef={register({ min: 1000, max: 9999 })} name="from"   /> {errors.from && "Year must be four digits"}</FormControl>
+        <FormControl> <TextField  style={{ width: "11vw" , marginLeft:'1vw'}} variant={'outlined'} type="number" label={"To Year"} inputRef={register({ min: 1000, max: 9999 })} name="to"   />  {errors.from && "Year must be four digits"} </FormControl>
  
         </Grid>
         
         <Grid item sm={3} >
-        <FormControl> <TextField  style={{ width: "23vw" }} variant={'outlined'} type="number" label={"To Year"} inputRef={register({ min: 1000, max: 9999 })} name="to"   />  {errors.from && "Year must be four digits"} </FormControl>
- 
+        
         </Grid>
       </Grid>
       <Grid container spacing={1} >
