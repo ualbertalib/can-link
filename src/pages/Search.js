@@ -52,7 +52,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '11pt',
     width: "10vw", 
     height: "100%",
-    backgroundColor: '#A8DBF6'
+    backgroundColor: '#A8DBF6',
+    marginRight:'.9vw'
   },
   paging: {
     fontSize: '10pt'
@@ -140,8 +141,8 @@ React.useEffect(() => {
         <Grid item sm={3} >
             <Suggester  width='23vw' title={'Author'} suggestType="agents" setValue={setValue}/>
         </Grid>
-        <Grid item sm={3} >
-          <Button className={classes.searchButton} variant="outlined" color="primary" type="submit">Search</Button>
+        <Grid item sm={3} style={{textAlign:'right'}}>
+            <Button className={classes.searchButton} variant="outlined" color="primary" type="submit">Search</Button>
       </Grid>
     
       </Grid>
