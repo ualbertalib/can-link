@@ -52,7 +52,8 @@ const DialogActions = withStyles((theme) => ({
 
 const useStyles = makeStyles((theme) => ({
   buttons: {
-        fontSize: '11pt'
+        fontSize: '11pt',
+        backgroundColor: '#A8DBF6'
     }
 }));
 

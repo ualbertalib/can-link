@@ -53,7 +53,8 @@ const DialogActions = withStyles((theme) => ({
 const useStyles = makeStyles((theme) => ({
   buttons: {
         fontSize: '11pt',
-        marginLeft:'1em'
+        marginLeft:'1em',
+        backgroundColor: '#A8DBF6'
     },
 }));
 
