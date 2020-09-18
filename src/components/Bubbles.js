@@ -15,7 +15,7 @@ export default function Bubbles({values}) {
       <BubbleChart
         graph= {{
           zoom: 1.1,
-          offsetX: -0.0,
+          offsetX: 0.05,
           offsetY: -0.01,
         }}
         width={"900"}
