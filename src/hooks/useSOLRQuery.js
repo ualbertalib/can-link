@@ -15,7 +15,7 @@ const massageResultForVisualizers = ({val, count})=>(
     size: count, 
    // color: Math.random(),
     style: {
-      border: 'thin solid red'
+      border: 'thin solid #2EBCEE'
     } 
   })
 

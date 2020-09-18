@@ -21,25 +21,24 @@
 import React, {useState} from 'react';
 import {Treemap} from 'react-vis';
 
-
-
-
-
 function getData(data) {
-  const dataObject = {
-    title: 'some title',
-    color: 1,
-    children: data
+  return {
+    title: 'Years',
+    color: "A6D8F6",
+    children: data,
+    style: {
+      border: 'thin solid #2EBCEE'
+    } 
   }
-  return dataObject
 }
 
 export default function AnimatedTreeMap({data, type}) {
 
   const [hoveredNode, setHoveredNode] = useState(false);
-  const [useCirclePacking, setUseCirclePacking] = useState(false);
 
     const treeProps = {
+      colorType: 'literal',
+      colorRange: ['A6D8F6'],
       animation: {
         damping: 9,
         stiffness: 300
@@ -48,13 +47,15 @@ export default function AnimatedTreeMap({data, type}) {
       onLeafMouseOver: (x) => setHoveredNode(x),
       onLeafMouseOut: () => setHoveredNode(false),
       onLeafClick: (x) => {console.log(x)},
-      height: 400,
-      mode: type, // useCirclePacking ? 'circlePack' : 'squarify',
+      height: 800,
+      mode: 'squarify',
       getLabel: x => x.name,
-      width: 700
+      renderMode: 'DOM',
+      getColor: x => '#A6D8F6',
+      width: 900
     };
     return (
-      <div className="dynamic-treemap-example">
+      <div>
         <Treemap {...treeProps} />
         {hoveredNode && hoveredNode.value}
       </div>

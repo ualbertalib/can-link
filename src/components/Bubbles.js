@@ -11,14 +11,14 @@ export default function Bubbles({values}) {
       }
 
       return (
-        <span style={{paddingLeft:'1vw'}}>
+       
       <BubbleChart
         graph= {{
           zoom: 1.1,
           offsetX: -0.0,
           offsetY: -0.01,
         }}
-        width={"700"}
+        width={"900"}
         height={"900"}
         padding={4} // optional value, number that set the padding between bubbles
         showLegend={true} // optional value, pass false to disable the legend.
@@ -29,6 +29,6 @@ export default function Bubbles({values}) {
         legendClickFun={legendClick}
         data={values}
       />
-      </span>
+     
       )
 }

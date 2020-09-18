@@ -180,7 +180,7 @@ React.useEffect(() => {
                     <Grid item xs={8}>
                              <ToggleBar setVisualization={handleTabBarChange} />
                              
-                           <div>
+                           <div style={{display: 'flex', alignItems: 'center',justifyContent: 'center'}}>
                              {visualization === 'map' && <FacetMap facets={universities} /> }
                              {visualization === 'cloud' && <WordCloud words={subjects} /> }
                              {visualization === 'rdTree' &&   <Bubbles values={universities} />}
