@@ -20,6 +20,8 @@
 
 import React, {useState} from 'react';
 import {Treemap} from 'react-vis';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 function getData(data) {
   return {
@@ -38,13 +40,13 @@ export default function AnimatedTreeMap({data, type}) {
 
     const treeProps = {
       colorType: 'literal',
-      colorRange: ['A6D8F6'],
+      colorRange: ['#A6D8F6'],
       animation: {
         damping: 9,
         stiffness: 300
       },
       data: getData(data),
-      onLeafMouseOver: (x) => setHoveredNode(x),
+      onLeafMouseOver: (x) => {setHoveredNode(x)},
       onLeafMouseOut: () => setHoveredNode(false),
       onLeafClick: (x) => {console.log(x)},
       height: 800,
@@ -56,8 +58,18 @@ export default function AnimatedTreeMap({data, type}) {
     };
     return (
       <div>
+        <Typography component="span"
+                    variant="body2"
+                    >
+                      {
+                        hoveredNode ? 
+                        <Box style={{marginBottom:'2vh'}}>{hoveredNode.value} theses for {hoveredNode.data.label}</Box>
+                        : 
+                        <Box style={{marginBottom:'2vh'}}>Hover over an item to show the number of results for that item.</Box>
+                      }
+        </Typography> 
         <Treemap {...treeProps} />
-        {hoveredNode && hoveredNode.value}
+        
       </div>
     );
   

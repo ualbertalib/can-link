@@ -28,6 +28,24 @@ export default function Bubbles({values}) {
         bubbleClickFunc={bubbleClick}
         legendClickFun={legendClick}
         data={values}
+        legendFont={{
+          family: "'News Cycle', sans-serif",
+          size: 12,
+          color: 'grey',
+          weight: 'bold',
+        }}
+    valueFont={{
+          family: "'News Cycle', sans-serif",
+          size: 12,
+          color: 'grey',
+          weight: 'bold',
+        }}
+    labelFont={{
+          family: "'News Cycle', sans-serif",
+          size: 16,
+          color: 'grey',
+          weight: 'bold',
+        }}
       />
      
       )

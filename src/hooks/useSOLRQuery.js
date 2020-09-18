@@ -15,8 +15,10 @@ const massageResultForVisualizers = ({val, count})=>(
     size: count, 
    // color: Math.random(),
     style: {
-      border: 'thin solid #2EBCEE'
-    } 
+      border: 'thin solid #2EBCEE',
+      fontFamily: "'News Cycle', sans-serif",
+    },
+    color: '#A8DBF6', 
   })
 
   const processUniversitiesForVisualizations = (uniMapping) => ({val, count}) => {
