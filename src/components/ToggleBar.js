@@ -50,7 +50,7 @@ export default function ToggleBar({setVisualization}) {
         <BubbleChartIcon/> <Typography className={classes.buttons}>Bubbles</Typography>
       </ToggleButton>
       <ToggleButton value="subbub" aria-label="subjects" >
-        <BubbleChartIcon/> <Typography className={classes.buttons}>Bubbles</Typography>
+        <BubbleChartIcon/> <Typography className={classes.buttons}>Degrees</Typography>
       </ToggleButton>
      
     </ToggleButtonGroup>
