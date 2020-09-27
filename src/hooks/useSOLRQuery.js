@@ -62,6 +62,7 @@ const dataFetchReducer = (state, action) => {
         isError: false,
         response: action.payload.response,
         universities: action.payload.universities,
+        uniShortNames: action.payload.uniShortNames,
         subjects: action.payload.subjects,
         degrees: action.payload.degrees,
         languages: action.payload.languages,
@@ -115,16 +116,24 @@ const useSOLRQuery = () => {
           queryString = `(title:${query.query} OR abstract:${query.query} OR subject:${query.query} OR creator:${query.query} ${yearQuery})`
         }
 
-        if (query.Institution) {
-          queryString = (queryString?`${queryString} AND `:'') + `institution_str:"${query.Institution}"`
+        if (query.Institution && query.Institution.length) {
+          queryString = (queryString?`${queryString} AND (`:'(')
+          queryString = queryString + query.Institution.map( institution => `institution_str:"${institution[0]}"`).join(' OR ')
+          queryString = queryString + ')'
         }
 
-        if (query.Author) {
-          queryString = (queryString?`${queryString} AND `:'') + `creator:${query.Author}`
+        if (query.Author && query.Author.length) {
+          queryString = (queryString?`${queryString} AND (`:'(')
+          queryString = queryString + query.Author.map( author => `creator:"${author}"`).join(' OR ')
+          queryString = queryString + ')'
+      //    queryString = (queryString?`${queryString} AND `:'') + `creator:${query.Author}`
         }
         
-        if (query.Subject) {
-          queryString = (queryString?`${queryString} AND `:'') + `subject:${query.Subject}`
+        if (query.Subject && query.Subject.length) {
+          queryString = (queryString?`${queryString} AND (`:'(')
+          queryString = queryString + query.Subject.map( subject => `subject:"${subject}"`).join(' OR ')
+          queryString = queryString + ')'
+        //  queryString = (queryString?`${queryString} AND `:'') + `subject:${query.Subject}`
         }
 
         if (query.from && query.to) {
@@ -153,16 +162,14 @@ const useSOLRQuery = () => {
         const result = await axios.get(url)
 
         const uniMapping = await fetchMappingAsync()
-      
-        console.log('the unimapping in the useSolrQuery')
-        console.log(uniMapping)
 
         console.log("result of solr query")
         console.log(result)
 
         let payload = {
           response: result.data.response, 
-          universities: result.data.facets.universities?result.data.facets.universities.buckets.map(processUniversitiesForVisualizations(uniMapping)):[], 
+          universities: result.data.facets.universities?result.data.facets.universities.buckets.map(processUniversitiesForVisualizations(uniMapping)):[],
+          uniShortNames: result.data.facets.uniShortNames?result.data.facets.uniShortNames.buckets.map(massageResultForVisualizers):[],
           subjects: result.data.facets.subjects?result.data.facets.subjects.buckets.map(massageResultForVisualizers):[], 
           degrees: result.data.facets.degrees?result.data.facets.degrees.buckets.map(massageResultForVisualizers):[],
           years: result.data.facets.years?result.data.facets.years.buckets.map(massageResultForVisualizers):[],

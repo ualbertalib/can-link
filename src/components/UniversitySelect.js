@@ -32,10 +32,12 @@ export default function UniversitySelect({setValue, width}) {
       classes={{
         option: classes.option,
       }}
+      multiple
+      limitTags={1}
       autoHighlight
       style={{ width: width }}
       onChange={(event, newInputValue) => {
-        setValue("Institution", newInputValue[0]);
+        setValue("Institution", newInputValue);
       }}
       getOptionLabel={(option) => option[1].name}
       renderOption={(option) => (

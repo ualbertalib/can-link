@@ -87,15 +87,19 @@ export default function Suggester({title, setValue, width, suggestType}) {
       filterOptions={(x) => x}
       options={options}
       autoComplete
+      multiple
+      limitTags={1}
       includeInputInList
       filterSelectedOptions
       //defaultValue = {`All`}
       onChange={(event, newValue) => {
+        setValue(title, newValue);
         setOptions(newValue ? [newValue, ...options] : options);
       }}
       onInputChange={(event, newInputValue) => {
+        console.log("the new input value in the suggester")
+        console.log(newInputValue)
         setInputValue(newInputValue);
-        setValue(title, newInputValue);
       }}
      
       

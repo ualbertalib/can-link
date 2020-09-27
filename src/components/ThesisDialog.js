@@ -17,7 +17,8 @@ import {UniversityListContext} from '../contexts/UniversityListContext'
 
 const useStyles = makeStyles((theme) => ({
   title: {
-    fontSize: '12pt'
+    fontSize: '12pt',
+    display: 'block' 
   },
   body: {
     fontSize: '10pt'
@@ -60,7 +61,7 @@ export default function ThesisDialog({thesis}) {
                       </UnderlineLink>}
                 secondary={<React.Fragment>
                     <Typography
-                    component="div"
+                    component="span"
                     variant="body2"
                     className={classes.title}
                     >
@@ -68,12 +69,12 @@ export default function ThesisDialog({thesis}) {
                   
                     </Typography>
                     <Typography
-                    component="div"
+                    component="span"
                     variant="body2"
                     className={classes.title}
                     >
                   
-                   {thesis.institution?`${uniMapping[thesis.institution[0]].name}`:''}{thesis.degree?` - ${thesis.degree[0]}`:''} {thesis.year?` - ${thesis.year[0]}`:''}
+                   {thesis.institution?`${uniMapping[thesis.institution[0]].name}`:''}{thesis.degree_name?` - ${thesis.degree_name[0]}`:''} {thesis.year?` - ${thesis.year[0]}`:''}
             
                     </Typography>
 
@@ -94,7 +95,7 @@ export default function ThesisDialog({thesis}) {
         <DialogTitle id="scroll-dialog-title" className={classes.title}>
             <div className={classes.title}>{thesis.title[0]}</div>
             <div className={classes.title}>{thesis.creator.map(creator=>creator)}</div>
-            <div className={classes.title}>{thesis.institution?`${uniMapping[thesis.institution[0]].name}`:''}{thesis.degree?` - ${thesis.degree[0]}`:''} {thesis.year?` - ${thesis.year[0]}`:''}</div>
+            <div className={classes.title}>{thesis.institution_name?`${thesis.institution_name}`:''}{thesis.degree_name?` - ${thesis.degree_name[0]}`:''} {thesis.year?` - ${thesis.year[0]}`:''}</div>
             
         </DialogTitle>
         <DialogContent dividers={true}>
@@ -103,7 +104,7 @@ export default function ThesisDialog({thesis}) {
             ref={descriptionElementRef}
             tabIndex={-1}
           >
-            <div className={classes.body}>{thesis.abstract?`${thesis.abstract}`:'No abstract available.'}</div>
+            <span className={classes.body}>{thesis.abstract?`${thesis.abstract}`:'No abstract available.'}</span>
           </DialogContentText>
         </DialogContent>
         <DialogActions>

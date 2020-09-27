@@ -61,7 +61,7 @@ export default function Record() {
         </Typography> 
 
         <Typography component="div" variant="h5" gutterBottom>
-        {thesis.degree} 
+        {thesis.degree_name} 
         </Typography> 
 
         <Box fontWeight='fontWeightBold' className={classes.subheading}>Subjects</Box>

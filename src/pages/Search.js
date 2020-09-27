@@ -72,7 +72,7 @@ function Search() {
 
   const [visualization, setVisualization] = useState('map')
 
-  const [{ response, universities, subjects, degrees, years, isLoading, isError }, doQuery] = useSOLRQuery();
+  const [{ response, universities, uniShortNames, subjects, degrees, years, isLoading, isError }, doQuery] = useSOLRQuery();
   
   const { register, handleSubmit, setValue, errors } = useForm();
   
@@ -183,7 +183,7 @@ React.useEffect(() => {
                            <div style={{display: 'flex', alignItems: 'center',justifyContent: 'center'}}>
                              {visualization === 'map' && <FacetMap facets={universities} /> }
                              {visualization === 'cloud' && <WordCloud words={subjects} /> }
-                             {visualization === 'rdTree' &&   <Bubbles values={universities} />}
+                             {visualization === 'rdTree' &&   <Bubbles values={uniShortNames} />}
                              {visualization === 'sqTree' &&   <AnimatedTreeMap data={years} type="squarify"/>}
                              {visualization === 'subbub' &&   <Bubbles values={degrees}/>}
                             </div> 
