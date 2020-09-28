@@ -126,14 +126,18 @@ const useSOLRQuery = () => {
           queryString = (queryString?`${queryString} AND (`:'(')
           queryString = queryString + query.Author.map( author => `creator:"${author}"`).join(' OR ')
           queryString = queryString + ')'
-      //    queryString = (queryString?`${queryString} AND `:'') + `creator:${query.Author}`
         }
         
         if (query.Subject && query.Subject.length) {
           queryString = (queryString?`${queryString} AND (`:'(')
           queryString = queryString + query.Subject.map( subject => `subject:"${subject}"`).join(' OR ')
           queryString = queryString + ')'
-        //  queryString = (queryString?`${queryString} AND `:'') + `subject:${query.Subject}`
+        }
+
+        if (query.Degree && query.Degree.length) {
+          queryString = (queryString?`${queryString} AND (`:'(')
+          queryString = queryString + query.Degree.map( degree => `degree_name_str:"${degree}"`).join(' OR ')
+          queryString = queryString + ')'
         }
 
         if (query.from && query.to) {

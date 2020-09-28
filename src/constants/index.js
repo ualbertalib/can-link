@@ -5,4 +5,5 @@ export const FACET_QUERY = "&json.facet={universities: {type:terms,field:institu
 //export const SUBJECT_FACET_QUERY = "http://206.167.181.124:8983/solr/test/select?q=*:*&start=0&rows=0&json.facet={subjects :{type:terms,field:subject,limit:10000}}"
 //export const SOLR_INITIAL_FACET_URL = `${SOLR_URL}query?q=*:*&rows=0${UNI_FACET_QUERY}`
 export const UNI_LIST_URL = 'http://206.167.181.124/institutions.json'
+export const DEGREE_FACET_URL = `${SOLR_QUERY_URL}*:*&start=0&rows=0&json.facet={degrees: {type:terms, field:degree_name_str, limit:1000}}`
 

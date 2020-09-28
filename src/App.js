@@ -7,7 +7,7 @@ import Search from './pages/Search'
 import Landing from './pages/Landing'
 
 import { UniversityListProvider } from './contexts/UniversityListContext'
-
+import { DegreeListProvider } from './contexts/DegreeListContext'
 
 import {
   BrowserRouter,
@@ -27,6 +27,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <UniversityListProvider>
+        <DegreeListProvider>
         <div style={{backgroundImage: 'linear-gradient(white, #A8DBF6)', height:'100%'}}>
         <BrowserRouter>
               <Switch>
@@ -42,6 +43,7 @@ function App() {
               </Switch>
         </BrowserRouter>
         </div>
+        </DegreeListProvider>
       </UniversityListProvider>
     </ThemeProvider>
   );

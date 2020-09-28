@@ -97,8 +97,6 @@ export default function Suggester({title, setValue, width, suggestType}) {
         setOptions(newValue ? [newValue, ...options] : options);
       }}
       onInputChange={(event, newInputValue) => {
-        console.log("the new input value in the suggester")
-        console.log(newInputValue)
         setInputValue(newInputValue);
       }}
      

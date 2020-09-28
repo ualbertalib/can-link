@@ -21,6 +21,7 @@ import Grid from '@material-ui/core/Grid';
 import { useForm } from "react-hook-form";
 import Suggester from '../components/Suggester';
 import UniversitySelect from '../components/UniversitySelect';
+import DegreeSelect from '../components/DegreeSelect';
 import FacetMap from '../components/FacetMap';
 import WordCloud from '../components/WordCloud'
 import ToggleBar from '../components/ToggleBar';
@@ -74,7 +75,7 @@ function Search() {
 
   const [{ response, universities, uniShortNames, subjects, degrees, years, isLoading, isError }, doQuery] = useSOLRQuery();
   
-  const { register, handleSubmit, setValue, errors } = useForm();
+  const { register, handleSubmit, setValue, reset, errors } = useForm();
   
   const onSubmit = queryInputs => {
     doQuery({...queryInputs, page: 0});
@@ -88,6 +89,15 @@ function Search() {
     setVisualization(tabName)
   }
 
+  const resetForm = () => {
+    // TODO:  need to tell the controls to reset their values.  could be with properties somehow I guess.
+    setValue('Subject', [])
+    setValue('Institution', [])
+    setValue('Author', [])
+    setValue('Degree', [])
+    reset()
+  }
+
   React.useEffect(() => {
     if (location.state && location.state.query) {
       setValue('query', location.state.query)
@@ -99,7 +109,7 @@ React.useEffect(() => {
   register({ name: 'Subject' });
   register({ name: 'Author' });
   register({ name: 'Institution' });
-
+  register({ name: 'Degree' });
 }, [register]);
 
   return (
@@ -116,18 +126,17 @@ React.useEffect(() => {
      
       <Grid container  spacing={1} >
         <Grid item sm={6} >
-            <FormControl> <TextField  style={{ width: "47.5vw" }} variant={'outlined'} type="search" label={"Query"} inputRef={register} name="query"   /></FormControl>
+          <FormControl> <TextField  style={{ width: "47.5vw" }} variant={'outlined'} type="search" label={"Query"} inputRef={register} name="query"   /></FormControl>
         </Grid>
 
-        <Grid item sm={3}  >
-        <FormControl> <TextField  style={{ width: "11vw" }} variant={'outlined'} type="number" label={"From Year"} inputRef={register({ min: 1000, max: 9999 })} name="from"   /> {errors.from && "Year must be four digits"}</FormControl>
-        <FormControl> <TextField  style={{ width: "11vw" , marginLeft:'1vw'}} variant={'outlined'} type="number" label={"To Year"} inputRef={register({ min: 1000, max: 9999 })} name="to"   />  {errors.from && "Year must be four digits"} </FormControl>
- 
-        </Grid>
-        
         <Grid item sm={3} >
-        
+          <FormControl> <Suggester  width='23vw' title={'Author'} suggestType="agents" setValue={setValue}/> </FormControl>
         </Grid>
+
+        <Grid item sm={3} >
+          <FormControl> <DegreeSelect width='23vw' setValue={setValue}/> </FormControl>
+        </Grid>
+
       </Grid>
       <Grid container spacing={1} >
         <Grid item sm={3} >
@@ -135,14 +144,18 @@ React.useEffect(() => {
         </Grid>
         
         <Grid item sm={3} >
-        <FormControl> <Suggester  width='23vw' title={'Subject'} suggestType="subjects" setValue={setValue}/> </FormControl>
+          <FormControl> <Suggester  width='23vw' title={'Subject'} suggestType="subjects" setValue={setValue}/> </FormControl>
         </Grid>
         
-        <Grid item sm={3} >
-        <FormControl> <Suggester  width='23vw' title={'Author'} suggestType="agents" setValue={setValue}/> </FormControl>
+        <Grid item sm={3}  >
+          <FormControl> <TextField  style={{ width: "11vw" }} variant={'outlined'} 
+      color="secondary" type="number" label={"From Year"} inputRef={register({ min: 1000, max: 9999 })} name="from"   /> {errors.from && "Year must be four digits"}</FormControl>
+          <FormControl> <TextField  style={{ width: "11vw" , marginLeft:'1vw'}} variant={'outlined'} type="number" label={"To Year"} inputRef={register({ min: 1000, max: 9999 })} name="to"   />  {errors.from && "Year must be four digits"} </FormControl>
         </Grid>
+
         <Grid item sm={3} style={{textAlign:'right'}}>
-            <Button className={classes.searchButton} variant="outlined" color="primary" type="submit">Search</Button>
+            <Button className={classes.searchButton} variant="outlined" color="primary" type="submit" style={{ width: "11vw", marginRight:'1vw' }}>Search</Button>
+            <Button className={classes.searchButton} variant="outlined" color="primary" style={{ width: "11vw" }} onClick={resetForm}>Reset</Button>
       </Grid>
     
       </Grid>
