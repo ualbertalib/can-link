@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function UniversitySelect({setValue, width}) {
+export default function UniversitySelect({setValue, width, inputValue, setInputValue}) {
   const [uniMapping] = useContext(UniversityListContext)
   const universities = Object.entries(uniMapping);
   const classes = useStyles();
@@ -35,9 +35,11 @@ export default function UniversitySelect({setValue, width}) {
       multiple
       limitTags={1}
       autoHighlight
+      value={inputValue}
       style={{ width: width }}
       onChange={(event, newInputValue) => {
         setValue("Institution", newInputValue);
+        setInputValue(newInputValue)
       }}
       getOptionLabel={(option) => option[1].name}
       renderOption={(option) => (

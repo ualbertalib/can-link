@@ -16,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Suggester({title, setValue, width, suggestType}) {
+// NOTE:  we pass the inputValue and setInputValue in from the parent to allow the parent to reset the form
+export default function Suggester({title, setValue, width, suggestType, inputValue, setInputValue}) {
   const classes = useStyles();
- // const [value, setValue] = React.useState(null);
-  const [inputValue, setInputValue] = React.useState('');
+  const [typedChars, setTypedChars] = React.useState('');
   const [options, setOptions] = React.useState([]);
   
   // useMemo ensures the function isn't recreated each time that's it is called from useEffect
@@ -44,20 +44,18 @@ export default function Suggester({title, setValue, width, suggestType}) {
   React.useEffect(() => {
     let active = true;
 
-    if (inputValue === '') {
+    if (! typedChars) {
      // setOptions(query ? [query] : []);
-     setOptions([])
+      setOptions([])
       return undefined;
     }
 
- 
-
-      fetchData(inputValue, (results)=>{
+      fetchData(typedChars, (results)=>{
         if (active) {
           let newOptions = [];
 
-          if (inputValue) {
-            newOptions = [inputValue];
+          if (typedChars) {
+            newOptions = [typedChars];
           }
   
           if (results) {
@@ -71,7 +69,7 @@ export default function Suggester({title, setValue, width, suggestType}) {
     return () => {
       active = false;
     };
-  }, [inputValue, fetchData]);
+  }, [fetchData, typedChars]);
 
 
             
@@ -90,14 +88,16 @@ export default function Suggester({title, setValue, width, suggestType}) {
       multiple
       limitTags={1}
       includeInputInList
+      value={inputValue}
       filterSelectedOptions
       //defaultValue = {`All`}
       onChange={(event, newValue) => {
         setValue(title, newValue);
         setOptions(newValue ? [newValue, ...options] : options);
+        setInputValue(newValue);
       }}
       onInputChange={(event, newInputValue) => {
-        setInputValue(newInputValue);
+        setTypedChars(newInputValue);
       }}
      
       

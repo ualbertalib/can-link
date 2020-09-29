@@ -5,8 +5,6 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 import {DegreeListContext} from '../contexts/DegreeListContext'
 
-
-
 const useStyles = makeStyles({
   option: {
     fontSize: 15,
@@ -17,10 +15,9 @@ const useStyles = makeStyles({
   },
 });
 
-export default function DegreeSelect({setValue, width}) {
+export default function DegreeSelect({setValue, width, inputValue, setInputValue}) {
+  
   const [degreeList] = useContext(DegreeListContext)
-  //const degrees = DEGREE_FACET_URL
-  //const degrees = [{name:'Master of Arts', value:'Master'}, {name:'Master of Science', value:'Master'}, {name:'Bachelor of Arts', value:'Bachelor'}, {name:'Bachelor of Science', value:'Bachelor'}]  //Object.entries(uniMapping);
   const classes = useStyles();
 
   return (
@@ -32,11 +29,13 @@ export default function DegreeSelect({setValue, width}) {
         option: classes.option,
       }}
       multiple
+      value={inputValue}
       limitTags={1}
       autoHighlight
       style={{ width: width }}
       onChange={(event, newInputValue) => {
         setValue("Degree", newInputValue);
+        setInputValue(newInputValue)
       }}
       getOptionLabel={(option) => option}
       renderOption={(option) => (

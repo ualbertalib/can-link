@@ -72,12 +72,19 @@ function Search() {
   const classes = useStyles();
 
   const [visualization, setVisualization] = useState('map')
+  const [author, setAuthor] = useState([])
+  const [subject, setSubject] = useState([])
+  const [degree, setDegree] = useState([])
+  const [university, setUniversity] = useState([])
+
 
   const [{ response, universities, uniShortNames, subjects, degrees, years, isLoading, isError }, doQuery] = useSOLRQuery();
   
   const { register, handleSubmit, setValue, reset, errors } = useForm();
   
   const onSubmit = queryInputs => {
+    console.log("the query inputs")
+    console.log(queryInputs)
     doQuery({...queryInputs, page: 0});
   }
 
@@ -90,12 +97,18 @@ function Search() {
   }
 
   const resetForm = () => {
-    // TODO:  need to tell the controls to reset their values.  could be with properties somehow I guess.
+    reset({ query: "", from:"", to:"" })
     setValue('Subject', [])
     setValue('Institution', [])
     setValue('Author', [])
     setValue('Degree', [])
-    reset()
+    setSubject([])
+    setAuthor([])
+    setUniversity([])
+    setDegree([])
+
+   
+    
   }
 
   React.useEffect(() => {
@@ -130,21 +143,21 @@ React.useEffect(() => {
         </Grid>
 
         <Grid item sm={3} >
-          <FormControl> <Suggester  width='23vw' title={'Author'} suggestType="agents" setValue={setValue}/> </FormControl>
+          <FormControl> <Suggester  width='23vw' title={'Author'} suggestType="agents" setValue={setValue} inputValue={author} setInputValue={setAuthor}/> </FormControl>
         </Grid>
 
         <Grid item sm={3} >
-          <FormControl> <DegreeSelect width='23vw' setValue={setValue}/> </FormControl>
+          <FormControl> <DegreeSelect width='23vw' setValue={setValue} inputValue={degree} setInputValue={setDegree}/> </FormControl>
         </Grid>
 
       </Grid>
       <Grid container spacing={1} >
         <Grid item sm={3} >
-        <FormControl> <UniversitySelect width='23vw' setValue={setValue}/> </FormControl>
+        <FormControl> <UniversitySelect width='23vw' setValue={setValue} inputValue={university} setInputValue={setUniversity}/> </FormControl>
         </Grid>
         
         <Grid item sm={3} >
-          <FormControl> <Suggester  width='23vw' title={'Subject'} suggestType="subjects" setValue={setValue}/> </FormControl>
+          <FormControl> <Suggester  width='23vw' title={'Subject'} suggestType="subjects" setValue={setValue} inputValue={subject} setInputValue={setSubject}/> </FormControl>
         </Grid>
         
         <Grid item sm={3}  >
