@@ -72,6 +72,9 @@ function Search() {
   const classes = useStyles();
 
   const [visualization, setVisualization] = useState('map')
+
+  // these next four are created here and passed into the corresponding AutoSelects
+  // so that we can reset the values on the AutoSelects from this Search page.
   const [author, setAuthor] = useState([])
   const [subject, setSubject] = useState([])
   const [degree, setDegree] = useState([])
@@ -92,6 +95,13 @@ function Search() {
     handleSubmit(queryInputs => doQuery({...queryInputs, page: page-1}))()
   }
 
+  // invokes a new search using the passed in value, 
+  // and sets the value in the corresponding form control
+  const handleVizClick = (field, value) => {
+
+  //  handleSubmit(queryInputs => doQuery({...queryInputs, page: page-1}))()
+  }
+
   const handleTabBarChange = (tabName) => {
     setVisualization(tabName)
   }
@@ -106,10 +116,8 @@ function Search() {
     setAuthor([])
     setUniversity([])
     setDegree([])
-
-   
-    
   }
+
 
   React.useEffect(() => {
     if (location.state && location.state.query) {
@@ -137,7 +145,7 @@ React.useEffect(() => {
 
       <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
      
-      <Grid container  spacing={1} >
+      <Grid container  spacing={1} style={{paddingRight:"1vw"}} >
         <Grid item sm={6} >
           <FormControl> <TextField  style={{ width: "47.5vw" }} variant={'outlined'} type="search" label={"Query"} inputRef={register} name="query"   /></FormControl>
         </Grid>
@@ -151,7 +159,7 @@ React.useEffect(() => {
         </Grid>
 
       </Grid>
-      <Grid container spacing={1} >
+      <Grid container spacing={1}  style={{paddingRight:"1vw"}} >
         <Grid item sm={3} >
         <FormControl> <UniversitySelect width='23vw' setValue={setValue} inputValue={university} setInputValue={setUniversity}/> </FormControl>
         </Grid>
@@ -167,8 +175,8 @@ React.useEffect(() => {
         </Grid>
 
         <Grid item sm={3} style={{textAlign:'right'}}>
-            <Button className={classes.searchButton} variant="outlined" color="primary" type="submit" style={{ width: "11vw", marginRight:'1vw' }}>Search</Button>
-            <Button className={classes.searchButton} variant="outlined" color="primary" style={{ width: "11vw" }} onClick={resetForm}>Reset</Button>
+        <FormControl> <Button size="medium" className={classes.searchButton} variant="outlined" color="primary" type="submit" style={{ width: "11vw", height: "5.4vh", marginRight:'1vw' }}>Search</Button></FormControl> 
+        <FormControl> <Button size="large" className={classes.searchButton} variant="outlined" color="primary" style={{ width: "11vw", height: "5.4vh" }} onClick={resetForm}>Reset</Button></FormControl> 
       </Grid>
     
       </Grid>

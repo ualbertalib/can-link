@@ -48,7 +48,7 @@ export default function AnimatedTreeMap({data, type}) {
       data: getData(data),
       onLeafMouseOver: (x) => {setHoveredNode(x)},
       onLeafMouseOut: () => setHoveredNode(false),
-      onLeafClick: (x) => {console.log(x)},
+      onLeafClick: (x) => {console.log(x.data.val)},
       height: 800,
       mode: 'squarify',
       getLabel: x => x.name,
