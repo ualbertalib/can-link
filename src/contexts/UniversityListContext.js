@@ -19,7 +19,7 @@ export const UniversityListProvider  = ({children}) => {
 
   async function  getList() {
     if (isEmpty(universityList)) {
-      const response = await fetch(UNI_LIST_URL)
+      const response = await fetch(UNI_LIST_URL, {cache: "no-store"})
       return await response.json()
     } else {
       return universityList

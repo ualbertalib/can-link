@@ -19,7 +19,7 @@ export const DegreeListProvider  = ({children}) => {
 
   async function  getList() {
     if (isEmpty(degreeList)) {
-      const response = await fetch(DEGREE_FACET_URL)
+      const response = await fetch(DEGREE_FACET_URL, {cache: "no-store"})
       let respJSON = await response.json()
       return respJSON.facets.degrees.buckets.map(degree=>degree.val)
     } else {
