@@ -17,13 +17,19 @@ import ReactWordcloud from 'react-wordcloud';
     transitionDuration: 1000,
   };
 
-export default function WordCloud({words}) {
+ 
+
+export default function WordCloud({words, handleVizClick, searchFieldName}) {
+
+  const callbacks={
+    onWordClick: ({val}) => handleVizClick(searchFieldName, val) 
+  }
 
 return (
     
         
         <div style={{ width: '60vw', height: '60vh' }}>
-          <ReactWordcloud options={options} words={words} />
+          <ReactWordcloud options={options} words={words} callbacks={callbacks} />
         </div>
      
 )

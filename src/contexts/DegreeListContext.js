@@ -21,7 +21,6 @@ export const DegreeListProvider  = ({children}) => {
     if (isEmpty(degreeList)) {
       const response = await fetch(DEGREE_FACET_URL)
       let respJSON = await response.json()
-      console.log('the respJSON');console.log(respJSON)
       return respJSON.facets.degrees.buckets.map(degree=>degree.val)
     } else {
       return degreeList

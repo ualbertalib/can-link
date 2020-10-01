@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 
 export default function UniversitySelect({setValue, width, inputValue, setInputValue}) {
   const [uniMapping] = useContext(UniversityListContext)
-  const universities = Object.entries(uniMapping);
+  const universities = Object.entries(uniMapping).map(uni=>uni[1].short_name)
   const classes = useStyles();
 
   
@@ -41,10 +41,10 @@ export default function UniversitySelect({setValue, width, inputValue, setInputV
         setValue("Institution", newInputValue);
         setInputValue(newInputValue)
       }}
-      getOptionLabel={(option) => option[1].name}
+      getOptionLabel={(option) => option}
       renderOption={(option) => (
         <React.Fragment>
-          {option[1].name} 
+          {option} 
         </React.Fragment>
       )}
       renderInput={(params) => (

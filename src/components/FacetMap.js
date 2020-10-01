@@ -32,9 +32,9 @@ function calculateMapBounds(facets) {
     return [bounds, centerLat, centerLong]
 }
 
-export default function FacetMap({facets}) {
-
+export default function FacetMap({facets, handleVizClick, searchFieldName}) {
     const [ bounds, centerLat, centerLong  ] = calculateMapBounds(facets);
+    const handleCircleClick = uniName => handleVizClick(searchFieldName, uniName) 
 
 return (
 <Map
@@ -47,25 +47,26 @@ return (
     attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
     />
 
-    {facets.map(({val, count, coordinates, name},index) => {
-    let radiusSize = 20 * Math.log(count / 100)
-   
-    if (radiusSize < 10) {
-        radiusSize = 10
-    } else if (radiusSize > 30) {
-        radiusSize = 30
-    }
-    return (
-        <CircleMarker
-            key={index}
-            center={coordinates}
-            radius={radiusSize}
-            fillOpacity={0.5}
-            stroke={false}
-        >
-            <Popup>{name}<br />{count}</Popup>
-        </CircleMarker>
-    )})
+    {facets.map(({val, count, coordinates, name, short_name},index) => {
+        let radiusSize = 20 * Math.log(count / 100)
+    
+        if (radiusSize < 10) {
+            radiusSize = 10
+        } else if (radiusSize > 30) {
+            radiusSize = 30
+        }
+        return (
+            <CircleMarker
+                key={index}
+                center={coordinates}
+                radius={radiusSize}
+                fillOpacity={0.5}
+                stroke={false}
+                onClick={ e => handleCircleClick(short_name) }
+            >
+                <Popup>{name}<br />{count}</Popup>
+            </CircleMarker>
+        )})
     }
 
 

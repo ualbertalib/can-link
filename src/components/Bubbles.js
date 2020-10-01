@@ -1,13 +1,14 @@
 import React from 'react';
 import BubbleChart from '@weknow/react-bubble-chart-d3';
 
-export default function Bubbles({values}) {
+export default function Bubbles({values, handleVizClick, searchFieldName}) {
  
     const bubbleClick = (label) =>{
-        console.log("Custom bubble click func")
+      console.log("in the bubble click")
+        handleVizClick(searchFieldName, label)
       }
       const legendClick = (label) =>{
-        console.log("Customer legend click func")
+        handleVizClick(searchFieldName, label)
       }
 
       return (
@@ -18,14 +19,12 @@ export default function Bubbles({values}) {
           offsetX: 0.00,
           offsetY: -0.01,
         }}
-        width={"900"}
-        height={"900"}
-        padding={4} // optional value, number that set the padding between bubbles
-        showLegend={false} // optional value, pass false to disable the legend.
-        legendPercentage={0} // number that represent the % of with that legend going to use.
-        
-        //Custom bubble/legend click functions such as searching using the label, redirecting to other page
-        bubbleClickFunc={bubbleClick}
+        width={900}
+        height={900}
+        padding={4} 
+        showLegend={false}
+        legendPercentage={0} 
+        bubbleClickFun={bubbleClick}
         legendClickFun={legendClick}
         data={values}
         legendFont={{

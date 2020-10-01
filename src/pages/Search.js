@@ -81,10 +81,16 @@ function Search() {
   const [university, setUniversity] = useState([])
 
 
+  // make it easier to get the right setter for a given controlled field
+  // when setting controlled field values from clicks on visualizations
+  const controlledFieldSetters = {Author: setAuthor, Subject: setSubject, Degree: setDegree, Institution: setUniversity}
+
   const [{ response, universities, uniShortNames, subjects, degrees, years, isLoading, isError }, doQuery] = useSOLRQuery();
   
   const { register, handleSubmit, setValue, reset, errors } = useForm();
   
+  const defaultYear = (new Date()).getFullYear()
+
   const onSubmit = queryInputs => {
     console.log("the query inputs")
     console.log(queryInputs)
@@ -95,11 +101,20 @@ function Search() {
     handleSubmit(queryInputs => doQuery({...queryInputs, page: page-1}))()
   }
 
+  // sets the value in react-hook-form,
   // invokes a new search using the passed in value, 
-  // and sets the value in the corresponding form control
-  const handleVizClick = (field, value) => {
-
-  //  handleSubmit(queryInputs => doQuery({...queryInputs, page: page-1}))()
+  // and sets the controlled value in the corresponding form control
+  const handleVizClick = (fieldName, fieldValue) => {
+    if (fieldName === 'year') {
+      setValue('from', fieldValue)
+      setValue('to', fieldValue)
+    } else if (controlledFieldSetters.hasOwnProperty(fieldName)) {
+        setValue(fieldName, [fieldValue])
+        controlledFieldSetters[fieldName]([fieldValue])
+    }
+    handleSubmit(queryInputs => {
+      doQuery({...queryInputs, page:0})
+    })()
   }
 
   const handleTabBarChange = (tabName) => {
@@ -107,15 +122,18 @@ function Search() {
   }
 
   const resetForm = () => {
-    reset({ query: "", from:"", to:"" })
+    reset({ query: ""})
     setValue('Subject', [])
     setValue('Institution', [])
     setValue('Author', [])
     setValue('Degree', [])
+    setValue('from', "")
+    setValue('to', "")
     setSubject([])
     setAuthor([])
     setUniversity([])
     setDegree([])
+    handleSubmit(queryInputs => doQuery({...queryInputs, page: 0}))()
   }
 
 
@@ -147,7 +165,7 @@ React.useEffect(() => {
      
       <Grid container  spacing={1} style={{paddingRight:"1vw"}} >
         <Grid item sm={6} >
-          <FormControl> <TextField  style={{ width: "47.5vw" }} variant={'outlined'} type="search" label={"Query"} inputRef={register} name="query"   /></FormControl>
+          <FormControl> <TextField  style={{ width: "47.5vw" }} variant={'outlined'} type="search" label={"Query"} inputRef={register} name="query"/></FormControl>
         </Grid>
 
         <Grid item sm={3} >
@@ -169,14 +187,37 @@ React.useEffect(() => {
         </Grid>
         
         <Grid item sm={3}  >
-          <FormControl> <TextField  style={{ width: "11vw" }} variant={'outlined'} 
-      color="secondary" type="number" label={"From Year"} inputRef={register({ min: 1000, max: 9999 })} name="from"   /> {errors.from && "Year must be four digits"}</FormControl>
-          <FormControl> <TextField  style={{ width: "11vw" , marginLeft:'1vw'}} variant={'outlined'} type="number" label={"To Year"} inputRef={register({ min: 1000, max: 9999 })} name="to"   />  {errors.from && "Year must be four digits"} </FormControl>
+          <FormControl> 
+            <TextField 
+              error = {errors.from}
+              helperText={errors.from ? 'Must be after 1900' : null}
+              style={{ width: "11vw" }} 
+              variant={'outlined'} 
+              type="number" 
+              defaultValue={1900}
+              label={"From Year"}  
+              inputRef={register({ min: 1900, max: 9999 })} 
+              name="from" 
+            /> 
+          </FormControl>
+          <FormControl> 
+            <TextField 
+              error = {errors.to}
+              helperText={errors.to ? 'Must be after 1900.' : null}
+              style={{ width: "11vw" , marginLeft:'1vw'}} 
+              variant={'outlined'} 
+              type="number" 
+              label={"To Year"} 
+              inputRef={register({ min: 1900, max: 9999 })} 
+              name="to" 
+              defaultValue={defaultYear}
+               />  
+          </FormControl>
         </Grid>
 
         <Grid item sm={3} style={{textAlign:'right'}}>
-        <FormControl> <Button size="medium" className={classes.searchButton} variant="outlined" color="primary" type="submit" style={{ width: "11vw", height: "5.4vh", marginRight:'1vw' }}>Search</Button></FormControl> 
-        <FormControl> <Button size="large" className={classes.searchButton} variant="outlined" color="primary" style={{ width: "11vw", height: "5.4vh" }} onClick={resetForm}>Reset</Button></FormControl> 
+        <Button className={classes.searchButton} variant="outlined" color="primary" type="submit" style={{ width: "11vw",  height:"56px", marginRight:'1vw' }}>Search</Button>
+        <Button className={classes.searchButton} variant="outlined" color="primary" style={{ width: "11vw",  height:"56px" }} onClick={resetForm}>Reset</Button>
       </Grid>
     
       </Grid>
@@ -215,11 +256,11 @@ React.useEffect(() => {
                              <ToggleBar setVisualization={handleTabBarChange} />
                              
                            <div style={{display: 'flex', alignItems: 'center',justifyContent: 'center'}}>
-                             {visualization === 'map' && <FacetMap facets={universities} /> }
-                             {visualization === 'cloud' && <WordCloud words={subjects} /> }
-                             {visualization === 'rdTree' &&   <Bubbles values={uniShortNames} />}
-                             {visualization === 'sqTree' &&   <AnimatedTreeMap data={years} type="squarify"/>}
-                             {visualization === 'subbub' &&   <Bubbles values={degrees}/>}
+                             {visualization === 'map' && <FacetMap facets={universities} handleVizClick={handleVizClick} searchFieldName="Institution"/> }
+                             {visualization === 'cloud' && <WordCloud words={subjects} handleVizClick={handleVizClick} searchFieldName="Subject"/> }
+                             {visualization === 'rdTree' &&   <Bubbles values={uniShortNames} handleVizClick={handleVizClick} searchFieldName="Institution"/>}
+                             {visualization === 'sqTree' &&   <AnimatedTreeMap data={years} handleVizClick={handleVizClick} searchFieldName="year"/>}
+                             {visualization === 'subbub' &&   <Bubbles values={degrees} handleVizClick={handleVizClick} searchFieldName="Degree"/>}
                             </div> 
                         </Grid>
                 </Grid>

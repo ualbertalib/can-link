@@ -29,7 +29,9 @@ const massageResultForVisualizers = ({val, count})=>(
           ...transformed,
           coordinates: uniData.coordinates,
           name: uniData.name,
-          label: uniData.name
+          label: uniData.name,
+          short_name: uniData.short_name
+
         }
       } catch(e) {
         console.log("error in processing univesity: " + val)
@@ -118,7 +120,7 @@ const useSOLRQuery = () => {
 
         if (query.Institution && query.Institution.length) {
           queryString = (queryString?`${queryString} AND (`:'(')
-          queryString = queryString + query.Institution.map( institution => `institution_str:"${institution[0]}"`).join(' OR ')
+          queryString = queryString + query.Institution.map( institution => `institution_short_str:"${institution}"`).join(' OR ')
           queryString = queryString + ')'
         }
 
@@ -166,9 +168,6 @@ const useSOLRQuery = () => {
         const result = await axios.get(url)
 
         const uniMapping = await fetchMappingAsync()
-
-        console.log("result of solr query")
-        console.log(result)
 
         let payload = {
           response: result.data.response, 
