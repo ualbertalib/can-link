@@ -1,4 +1,4 @@
-![University of Alberta Library](docs/UofALibrary.jpg) ![CanLink](src/images/canlink.jpg) 
+![University of Alberta Library](docs/UofALibrary.jpg) ![CanLink](src/images/CanLinklogo-gray.png) 
 
 CanLink is an initiative to increase the discoverability of Canadian theses and dissertations by leveraging the power of linked data to surface unexpected connections and relationships.
 The initial proof of concept was developed as part of the Canadian Linked Data Initiative.
