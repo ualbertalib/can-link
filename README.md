@@ -8,7 +8,7 @@ The current initiative has built on this work and is maintained and developed by
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  The 'start' and 'build' scripts described further below are standard create-react-app scripts.  
 
-The app is a so-called SPA (single page app) which means it loads into the browser on initial page load of index.html.  In other words, the entire site is loaded all at once.  Navigation between page is handled within the browser (using react-router).
+The app is a so-called SPA (single page app) which means it loads into the browser on initial page load of index.html.  In other words, the entire site is loaded all at once.  Navigation between pages is handled within the browser (using react-router).
 
 The app handles searching by making XHR calls from the react app to SOLR running on the server.  All the query params and the SOLR server URL are defined in src/constants/index.js.
 
@@ -20,7 +20,7 @@ Basically, though, install node, clone this repository to your computer, run ``n
 
 ### `npm start`
 
-Runs the app in the development mode.<br />
+Runs the app in development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
@@ -28,15 +28,13 @@ You will also see any lint errors in the console.
 
 ### Deploying to the CanLink Server
 
-Run the build script then copy the contents of that directory to the directory on the server (talk to Danoosh about location)
+Run the build script:
 
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Then copy the contents of that directory to the directory on the server (talk to Danoosh about location)
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
