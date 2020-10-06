@@ -114,6 +114,7 @@ export default function ThesisDialog({thesis}) {
           <Button 
             component={Link} 
             color="primary"
+            target="_blank"
             to={
               { 
                   pathname: "/record/" + thesis.id.split('/').pop(),
