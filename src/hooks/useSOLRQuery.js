@@ -162,7 +162,7 @@ const useSOLRQuery = () => {
         url = `${url}&start=${query.page*rows}&rows=${rows}`
         
 
-        // finally add faceting query for universities and subjects
+        // finally add faceting query 
         url = `${url}${FACET_QUERY}`
 
         const result = await axios.get(url)

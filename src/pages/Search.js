@@ -92,8 +92,6 @@ function Search() {
   const defaultYear = (new Date()).getFullYear()
 
   const onSubmit = queryInputs => {
-    console.log("the query inputs")
-    console.log(queryInputs)
     doQuery({...queryInputs, page: 0});
   }
 

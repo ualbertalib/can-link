@@ -8,9 +8,36 @@ The current initiative has built on this work and is maintained and developed by
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  The 'start' and 'build' scripts described further below are standard create-react-app scripts.  
 
-The app is a so-called SPA (single page app) which means it loads into the browser on initial page load of index.html.  In other words, the entire site is loaded all at once.  Navigation between pages is handled within the browser (using react-router).
+The app is a so-called SPA (single page app) which means it loads the entire site into the browser on initial page load of index.html.  Navigation between pages is handled within the browser (using react-router) without any calls to the server.
 
-The app handles searching by making XHR calls from the react app to SOLR running on the server.  All the query params and the SOLR server URL are defined in src/constants/index.js.
+There are three pages in this app, defined in src/pages:
+
+Landing.js
+Record.js 
+Search.js
+
+These pages, as well as all the components in src/components, use material-ui.
+
+You can change the layout and styling from these pages.  Search.js is also where you can change the search form.  Read on...
+
+### Searching
+
+The main search form is in Search.js .  The form uses [React Hook Form](https://react-hook-form.com) to manage the form.  On submit of the form, the values from the form are available in a 'query' object passed into the 'handleSubmit' function.  The form values (the 'query' object) are passed on to src/hooks/useSOLRQuery.js which is a [React Custom Hook](https://reactjs.org/docs/hooks-custom.html).  
+
+useSOLRQuery.js simply checks for each of the form values (e.g., institution, subject, etc.) and if present, adds the appropriate clause to the SOLR query string.  Finally, the paing params and the SOLR facet query are added to the string, and the string is sent off to the SOLR server.
+
+The SOLR response is cleaned up a bit, and the faceting results restructed to return objects with properties that are expected by the visualizations.
+
+The SOLR server URL and faceting queryies are defined in src/constants/index.js.  It's here that you would change the SOLR core.
+
+### Contexts as Caches
+
+We make two calls to the server to get the list of universities and the list of degrees, which we use for the corresponding Select dropdowns, but also to map universities to coordinates and to short names.
+
+Rather than make these calls every time the dropdown is rendered or anytime we need to do a lookup in the list, we load both lists once and cached them in [React Contexts](https://reactjs.org/docs/context.html).  The contexts are available throughout the React App.  Our two contexts are defined in:
+
+src/contexts/DegreeListContext.js
+sr/contexts/UniversityListContext.js
 
 ## Setting up a Development Environment
 
