@@ -24,7 +24,7 @@ You can change the layout and styling from these pages.  Search.js is also where
 
 The main search form is in Search.js .  The form uses [React Hook Form](https://react-hook-form.com) to manage the form.  On submit of the form, the values from the form are available in a 'query' object passed into the 'handleSubmit' function.  The form values (the 'query' object) are passed on to src/hooks/useSOLRQuery.js which is a [React Custom Hook](https://reactjs.org/docs/hooks-custom.html).  
 
-useSOLRQuery.js simply checks for each of the form values (e.g., institution, subject, etc.) and if present, adds the appropriate clause to the SOLR query string.  Finally, the paing params and the SOLR facet query are added to the string, and the string is sent off to the SOLR server.
+useSOLRQuery.js simply checks for each of the form values (e.g., institution, subject, etc.) and if present, adds the appropriate clause to the SOLR query string.  Finally, the paging params and the SOLR facet query are added to the string, and the string is sent off to the SOLR server.
 
 The SOLR response is cleaned up a bit, and the faceting results restructed to return objects with properties that are expected by the visualizations.
 
@@ -34,10 +34,12 @@ The SOLR server URL and faceting queryies are defined in src/constants/index.js.
 
 We make two calls to the server to get the list of universities and the list of degrees, which we use for the corresponding Select dropdowns, but also to map universities to coordinates and to short names.
 
-Rather than make these calls every time the dropdown is rendered or anytime we need to do a lookup in the list, we load both lists once and cached them in [React Contexts](https://reactjs.org/docs/context.html).  The contexts are available throughout the React App.  Our two contexts are defined in:
+Rather than make these calls every time the dropdown is rendered or anytime we need to do a lookup in the list, we load both lists once and cache them in [React Contexts](https://reactjs.org/docs/context.html).  The contexts are available throughout the React App.  Our two contexts are defined in:
 
+```
 src/contexts/DegreeListContext.js
-sr/contexts/UniversityListContext.js
+src/contexts/UniversityListContext.js
+```
 
 ## Setting up a Development Environment
 
