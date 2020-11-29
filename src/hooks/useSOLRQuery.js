@@ -1,6 +1,5 @@
 import{ useState, useEffect, useReducer, useContext } from 'react';
 import axios from 'axios';
-//import uniMapping from '../datasets/uniMapping'
 import {SOLR_QUERY_URL, FACET_QUERY} from '../constants';
 import { UniversityListContext } from '../contexts/UniversityListContext'
 
@@ -34,7 +33,7 @@ const massageResultForVisualizers = ({val, count})=>(
 
         }
       } catch(e) {
-        console.log("error in processing univesity: " + val)
+        console.log("error in processing university: " + val)
         throw Error(e)
       }
   }

@@ -234,7 +234,7 @@ React.useEffect(() => {
                   {response.docs[0] ? (
                     <Fragment>
                       <Typography component="span"
-                    variant="body2" className={classes.paging}>Page {response.start/10 + 1} of {Math.ceil(response.numFound/10)}</Typography>
+                    variant="body2" className={classes.paging}>{response.numFound} results - showing page {response.start/10 + 1} of {Math.ceil(response.numFound/10)}</Typography>
 
                       <div className={classes.demo}>
                         <List dense={true}>

@@ -5,7 +5,7 @@ import BubbleChartIcon from '@material-ui/icons/BubbleChart';
 import PublicIcon from '@material-ui/icons/Public';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import { makeStyles, fade} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import '../App.css';
 
