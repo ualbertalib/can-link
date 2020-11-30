@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, Popup, TileLayer, CircleMarker } from 'react-leaflet'
+import { Map, Tooltip, TileLayer, CircleMarker } from 'react-leaflet'
 
 function calculateMapBounds(facets) {
 
@@ -64,7 +64,7 @@ return (
                 stroke={false}
                 onClick={ e => handleCircleClick(short_name) }
             >
-                <Popup>{name}<br />{count}</Popup>
+                <Tooltip sticky>{name}<br />{count} {count===1?'thesis':'theses'}</Tooltip>
             </CircleMarker>
         )})
     }

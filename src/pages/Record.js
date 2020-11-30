@@ -38,8 +38,6 @@ export default function Record() {
     const [{thesis}] = useSOLRRecordQuery(recordId);
     const uni = uniMapping[thesis.institution]
     
-    console.log(thesis)
-
     return (
         <div><Header/>
         <div className={classes.root}>

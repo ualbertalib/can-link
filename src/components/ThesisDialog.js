@@ -123,7 +123,16 @@ export default function ThesisDialog({thesis}) {
                       <Typography className={classes.body}>Open Full Record</Typography>
           </Button>
 
-
+          {thesis.link?<Button 
+            component={Link} 
+            color="primary"
+            target="_blank"
+            to={
+              { 
+                  pathname: thesis.link
+              } }>
+                      <Typography className={classes.body}>See Full Thesis Text</Typography>
+          </Button>:null}
         </DialogActions>
       </Dialog>
     </div>
