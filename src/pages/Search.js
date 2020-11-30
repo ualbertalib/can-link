@@ -102,7 +102,7 @@ function Search() {
   // sets the value in react-hook-form,
   // invokes a new search using the passed in value, 
   // and sets the controlled value in the corresponding form control
-  const handleVizClick = (fieldName, fieldValue) => {
+  const handleVizClick = (fieldName, fieldValue, vizName="map") => {
     if (fieldName === 'year') {
       setValue('from', fieldValue)
       setValue('to', fieldValue)
@@ -113,6 +113,7 @@ function Search() {
     handleSubmit(queryInputs => {
       doQuery({...queryInputs, page:0})
     })()
+    setVisualization(vizName)
   }
 
   const handleTabBarChange = (tabName) => {
@@ -251,14 +252,14 @@ React.useEffect(() => {
                     </Grid>
 
                     <Grid item xs={8}>
-                             <ToggleBar setVisualization={handleTabBarChange} />
+                             <ToggleBar setVisualization={handleTabBarChange} visualization={visualization}/>
                              
                            <div style={{display: 'flex', alignItems: 'center',justifyContent: 'center'}}>
-                             {visualization === 'map' && <FacetMap facets={universities} handleVizClick={handleVizClick} searchFieldName="Institution"/> }
-                             {visualization === 'cloud' && <WordCloud words={subjects} handleVizClick={handleVizClick} searchFieldName="Subject"/> }
-                             {visualization === 'rdTree' &&   <Bubbles values={uniShortNames} handleVizClick={handleVizClick} searchFieldName="Institution"/>}
-                             {visualization === 'sqTree' &&   <AnimatedTreeMap data={years} handleVizClick={handleVizClick} searchFieldName="year"/>}
-                             {visualization === 'subbub' &&   <Bubbles values={degrees} handleVizClick={handleVizClick} searchFieldName="Degree"/>}
+                             {visualization === 'map' && <FacetMap facets={universities} handleVizClick={handleVizClick} searchFieldName="Institution" vizName="map"/> }
+                             {visualization === 'cloud' && <WordCloud words={subjects} handleVizClick={handleVizClick} searchFieldName="Subject" vizName="cloud"/> }
+                             {visualization === 'rdTree' &&   <Bubbles values={uniShortNames} handleVizClick={handleVizClick} searchFieldName="Institution" vizName="rdTree"/>}
+                             {visualization === 'sqTree' &&   <AnimatedTreeMap data={years} handleVizClick={handleVizClick} searchFieldName="year" vizName="sqTree"/>}
+                             {visualization === 'subbub' &&   <Bubbles values={degrees} handleVizClick={handleVizClick} searchFieldName="Degree" vizName="subbub"/>}
                             </div> 
                         </Grid>
                 </Grid>

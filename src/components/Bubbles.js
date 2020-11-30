@@ -1,14 +1,13 @@
 import React from 'react';
 import BubbleChart from '@weknow/react-bubble-chart-d3';
 
-export default function Bubbles({values, handleVizClick, searchFieldName}) {
+export default function Bubbles({values, handleVizClick, searchFieldName, vizName}) {
  
     const bubbleClick = (label) =>{
-      console.log("in the bubble click")
-        handleVizClick(searchFieldName, label)
+        handleVizClick(searchFieldName, label, vizName)
       }
       const legendClick = (label) =>{
-        handleVizClick(searchFieldName, label)
+        handleVizClick(searchFieldName, label, vizName)
       }
 
       return (

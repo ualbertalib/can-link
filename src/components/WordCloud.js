@@ -19,10 +19,10 @@ import ReactWordcloud from 'react-wordcloud';
 
  
 
-export default function WordCloud({words, handleVizClick, searchFieldName}) {
+export default function WordCloud({words, handleVizClick, searchFieldName, vizName}) {
 
   const callbacks={
-    onWordClick: ({val}) => handleVizClick(searchFieldName, val) 
+    onWordClick: ({val}) => handleVizClick(searchFieldName, val, vizName) 
   }
 
 return (

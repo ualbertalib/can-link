@@ -17,22 +17,21 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ToggleBar({setVisualization}) {
+export default function ToggleBar({setVisualization, visualization}) {
   
   const classes = useStyles();
 
-    const [value, setValue] = React.useState('map');
+  //const [value, setValue] = React.useState('map');
 
   const handleChange = (event, newValue) => {
     setVisualization(newValue)
-    setValue(newValue);
   };
 
   return (
     <div  className="App">
     <ToggleButtonGroup
     style={{marginBottom:'1em'}}
-      value={value}
+      value={visualization}
       exclusive
       onChange={handleChange}
       aria-label="text alignment"

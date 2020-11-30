@@ -1,24 +1,14 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-//import parse from 'autosuggest-highlight/parse';
 import throttle from 'lodash/throttle';
 import axios from 'axios';
 import {SOLR_URL} from '../constants'
 
-const useStyles = makeStyles((theme) => ({
-  icon: {
-    color: theme.palette.text.secondary,
-    marginRight: theme.spacing(2),
-  },
-}));
-
 // NOTE:  we pass the inputValue and setInputValue in from the parent to allow the parent to reset the form
 export default function Suggester({title, setValue, width, suggestType, inputValue, setInputValue}) {
-  const classes = useStyles();
+  
   const [typedChars, setTypedChars] = React.useState('');
   const [options, setOptions] = React.useState([]);
   
@@ -113,9 +103,7 @@ export default function Suggester({title, setValue, width, suggestType, inputVal
 
         return (
           <Grid container alignItems="center">
-            <Grid item>
-              <LocationOnIcon className={classes.icon} />
-            </Grid>
+            
             <Grid item xs>
              {/*  {parts.map((part, index) => (
                 <span key={index} style={{ fontWeight: part.highlight ? 700 : 400 }}>

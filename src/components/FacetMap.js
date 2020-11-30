@@ -32,9 +32,9 @@ function calculateMapBounds(facets) {
     return [bounds, centerLat, centerLong]
 }
 
-export default function FacetMap({facets, handleVizClick, searchFieldName}) {
+export default function FacetMap({facets, handleVizClick, searchFieldName, vizName}) {
     const [ bounds, centerLat, centerLong  ] = calculateMapBounds(facets);
-    const handleCircleClick = uniName => handleVizClick(searchFieldName, uniName) 
+    const handleCircleClick = uniName => handleVizClick(searchFieldName, uniName, vizName) 
 
 return (
 <Map

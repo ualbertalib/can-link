@@ -34,7 +34,7 @@ function getData(data) {
   }
 }
 
-export default function AnimatedTreeMap({data, handleVizClick, searchFieldName}) {
+export default function AnimatedTreeMap({data, handleVizClick, searchFieldName, vizName}) {
 
   const [hoveredNode, setHoveredNode] = useState(false);
 
@@ -48,7 +48,7 @@ export default function AnimatedTreeMap({data, handleVizClick, searchFieldName})
       data: getData(data),
       onLeafMouseOver: (x) => {setHoveredNode(x)},
       onLeafMouseOut: () => setHoveredNode(false),
-      onLeafClick: (x) => {handleVizClick(searchFieldName, x.data.val)},
+      onLeafClick: (x) => {handleVizClick(searchFieldName, x.data.val, vizName)},
       height: 800,
       mode: 'squarify',
       getLabel: x => x.name,
