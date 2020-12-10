@@ -29,8 +29,8 @@ export default function MainPageSearchBar() {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     history.push({
-      pathname: 'search',
-      state: { query: query }
+      pathname: `/search`,
+      search: `?query=${query}`
   });
     
 }

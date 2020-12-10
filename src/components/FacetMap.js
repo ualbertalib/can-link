@@ -8,6 +8,8 @@ function calculateMapBounds(facets) {
     let minLong = -123.470331452;
     let maxLong = 141.1500;
 
+    
+
     if (facets && facets.length) {
         const allLats = facets.map(item => item.coordinates[0]);
         const allLongs = facets.map(item => item.coordinates[1]);
@@ -35,26 +37,33 @@ function calculateMapBounds(facets) {
 export default function FacetMap({facets, handleVizClick, searchFieldName, vizName}) {
     const [ bounds, centerLat, centerLong  ] = calculateMapBounds(facets);
     const handleCircleClick = uniName => handleVizClick(searchFieldName, uniName, vizName) 
-
+    const canadaCentre = [60.1304, -106.3468]
+   // const canadaBounds = [[55.6751050889, -52.6480987209, ], [55.23324, -140.99778]] bounds={canadaBounds}
 return (
 <Map
-    center={[centerLat, centerLong]} 
-    zoom={1} 
+    center={canadaCentre} 
+    zoom={3} 
     style={{ width: '100%', height: '400px'}}
-    bounds={bounds}>
+    >
     <TileLayer
     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
     />
 
     {facets.map(({val, count, coordinates, name, short_name},index) => {
-        let radiusSize = 20 * Math.log(count / 100)
+        let radiusSize = 5;
+        if (count > 100 && count <= 300) radiusSize = 10
+        if (count > 300 && count <= 700) radiusSize = 15
+        if (count > 700 && count <= 1200) radiusSize = 20
+        if (count > 1200 && count <= 2500) radiusSize = 25
+        if (count > 2500) radiusSize = 30
+        //let radiusSize = 20 * Math.log(count / 100)
     
-        if (radiusSize < 10) {
+       /*  if (radiusSize < 10) {
             radiusSize = 10
         } else if (radiusSize > 30) {
             radiusSize = 30
-        }
+        } */
         return (
             <CircleMarker
                 key={index}

@@ -31,13 +31,13 @@ function App() {
         <div style={{backgroundImage: 'linear-gradient(white, #A8DBF6)', height:'100%'}}>
         <BrowserRouter>
               <Switch>
-                <Route path="/record/:recordId">
+                <Route exaxt path="/record/:recordId">
                   <Record/>
                 </Route>
-                <Route path="/search">
+                <Route exact path="/search">
                   <Search/>
                 </Route>
-                <Route path="/">
+                <Route exact path="/">
                   <Landing/>
                 </Route>
               </Switch>
