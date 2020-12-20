@@ -117,8 +117,7 @@ export default function ThesisDialog({thesis}) {
             target="_blank"
             to={
               { 
-                  pathname: "/record/" + thesis.id.split('/').pop(),
-                  thesis: thesis
+                  pathname: "/record/" + thesis.id.split('/').pop()
               } }>
                       <Typography className={classes.body}>Open Full Record</Typography>
           </Button>

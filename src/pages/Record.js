@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import Header from '../components/Header'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
+import RdfDialog from '../components/RdfDialog'
 
 import {
     useParams
@@ -34,7 +35,8 @@ export default function Record() {
     const classes = useStyles();
     const [uniMapping] = useContext(UniversityListContext)
 
-    let { recordId } = useParams(); 
+    const { recordId } = useParams(); 
+
     const [{thesis}] = useSOLRRecordQuery(recordId);
     const uni = uniMapping[thesis.institution]
     
@@ -85,6 +87,11 @@ export default function Record() {
         <Box fontWeight='fontWeightBold' className={classes.subheading}>Link to fulltext</Box>
         <Typography component="div" variant="body1" gutterBottom>
         {thesis.link?<a href={thesis.link}>{thesis.link}</a>:''} 
+        </Typography>
+
+        <Box fontWeight='fontWeightBold' className={classes.subheading}>View RDF</Box>
+        <Typography component="div" variant="body1" gutterBottom>
+            <RdfDialog recordId={recordId}/> 
         </Typography>
 
         <Box fontWeight='fontWeightBold' className={classes.subheading}>Abstract</Box>

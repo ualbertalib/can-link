@@ -176,8 +176,6 @@ function Search() {
 
   React.useEffect(() => {
     const params = querystring.parse(location.search)
-    console.log("incoming query string:")
-    console.log(params)
     if (Object.keys(params).length > 0) {
       ['query', 'from', 'to'].forEach(term => {
         if (params[term]) setValue(term, params[term])
