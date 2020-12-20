@@ -7,7 +7,7 @@ import List from '@material-ui/core/List';
 import FormControl from '@material-ui/core/FormControl';
 
 import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
+
 import TextField from '@material-ui/core/TextField';
 import Paginator from '../components/Paginator';
 
@@ -30,9 +30,9 @@ import Bubbles from '../components/Bubbles';
 import AnimatedTreeMap from '../components/AnimatedTreeMap';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import Shares from '../components/Shares';
 
 import querystring from 'query-string';
-import { EmailShareButton, EmailIcon, TwitterShareButton, TwitterIcon, FacebookIcon, FacebookMessengerShareButton, FacebookShareButton } from 'react-share';
 
 import { useLocation, useHistory } from 'react-router-dom'
 
@@ -69,19 +69,15 @@ const useStyles = makeStyles((theme) => ({
   noresults: {
     color: 'red'
   },
-  shareIcons: {
-    marginRight: '1em',
-    marginLeft: '1em'
+  copyButton: {
+    padding: 24
+  },
+  copyIcon: {
+    fontSize: 32
   }
 
 }));
 
-const shareIconProps = {
-  size: '32',
-  round: 'true'
-}
-
-const shareMessage = "Check out my Can-Link query!";
 
 function Search() {
 
@@ -110,31 +106,34 @@ function Search() {
 
   const defaultYear = (new Date()).getFullYear()
 
-  const handleQuery = useCallback((queryInputs, page) => {
-    doQuery({ ...queryInputs, page: page });
-    // update address bar with query params
-    // so that this page can be bookmarked
-    const qs = querystring.stringify({ ...queryInputs, page })
-    console.log("about to send query")
-    console.log("next two should match - queryInputs from form and queryString")
-    console.log(queryInputs)
-    console.log(qs)
+  const setQueryString = (params) => {
+    console.log("in set Query string and the params are: ")
+    console.log(params)
+    const qs = querystring.stringify(params)
     history.push({
       pathname: `/search`,
       search: `?${qs}`
     });
-  }, [doQuery, history])
+  }
 
-  const onSubmit = queryInputs => handleQuery(queryInputs, 0)
+  const handleQuery = useCallback((queryInputs, page, vizName) => {
+    doQuery({ ...queryInputs, page });
+    // update address bar with query params
+    // so that this page can be bookmarked
+    setQueryString({ ...queryInputs, visualization: vizName, page })
+  }, [doQuery, setQueryString])
+
+  const onSubmit = queryInputs => handleQuery(queryInputs, 0, visualization)
 
   const handlePageChange = (page) => {
-    handleSubmit(queryInputs => handleQuery(queryInputs, page - 1))()
+    handleSubmit(queryInputs => handleQuery(queryInputs, page - 1, visualization))()
   }
 
   // sets the value in react-hook-form,
   // invokes a new search using the passed in value, 
   // and sets the controlled value in the corresponding form control
   const handleVizClick = (fieldName, fieldValue, vizName = "map") => {
+    setVisualization(vizName)
     if (fieldName === 'year') {
       setValue('from', fieldValue)
       setValue('to', fieldValue)
@@ -143,13 +142,15 @@ function Search() {
       controlledFieldSetters[fieldName]([fieldValue])
     }
     handleSubmit(queryInputs => {
-      handleQuery(queryInputs, 0)
+      handleQuery(queryInputs, 0, vizName)
     })()
-    setVisualization(vizName)
+    
   }
 
   const handleTabBarChange = (tabName) => {
     setVisualization(tabName)
+    const existingParams = querystring.parse(location.search)
+    setQueryString({...existingParams, visualization: tabName})
   }
 
   const resetForm = () => {
@@ -164,7 +165,7 @@ function Search() {
     setAuthor([])
     setUniversity([])
     setDegree([])
-    handleSubmit(queryInputs => handleQuery(queryInputs, 0))()
+    handleSubmit(queryInputs => handleQuery(queryInputs, 0, visualization))()
   }
 
   React.useEffect(() => {
@@ -202,11 +203,15 @@ function Search() {
         const subjects = [].concat(params.Subject)
         setSubject(subjects)
         setValue('Subject', subjects)
-
       }
+      if (params.visualization) {
+        setVisualization(params.visualization)
+      }
+
     }
     const page = params.page ? params.page : 0
-    handleSubmit(queryInputs => handleQuery(queryInputs, page))()
+    const visualizationParam = params.visualization ? params.visualization : 'map'
+    handleSubmit(queryInputs => handleQuery(queryInputs, page, visualizationParam))()
   }, []);
 
 
@@ -298,17 +303,7 @@ function Search() {
 
                         <Typography component="span"
                           variant="body2" className={classes.paging}>
-                          <Box>
-                            <EmailShareButton
-                              subject={shareMessage}
-                              body="A selection of Canadian theses, assembled by me: "
-                              url={window.location.href}>
-                              <EmailIcon {...shareIconProps} className={classes.shareIcons} />
-                            </EmailShareButton>
-                            <TwitterShareButton url={window.location.href} title={shareMessage} hashtags={['canlink']} ><TwitterIcon {...shareIconProps} className={classes.shareIcons} /></TwitterShareButton>
-                            <FacebookShareButton url={window.location.href} quote={shareMessage} hashtag='#canlink'
-                            ><FacebookIcon {...shareIconProps} className={classes.shareIcons} /></FacebookShareButton>
-                          </Box>
+                         <Shares/>
                           {response.numFound} results - showing page {response.start / 10 + 1} of {Math.ceil(response.numFound / 10)}</Typography>
 
                         <div className={classes.demo}>
