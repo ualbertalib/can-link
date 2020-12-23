@@ -13,6 +13,7 @@
     "@weknow/react-bubble-chart-d3": "^1.0.12",
     "autosuggest-highlight": "^3.1.1",
     "axios": "^0.19.2",
+    "js-file-download": "^0.4.12",
     "leaflet": "^1.6.0",
     "material-ui-popup-state": "^1.6.1",
     "query-string": "^6.13.7",

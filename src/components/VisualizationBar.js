@@ -3,7 +3,6 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import PlaceIcon from '@material-ui/icons/Place';
 import CloudQueueIcon from '@material-ui/icons/CloudQueueTwoTone';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 import AccountTreeIcon from '@material-ui/icons/AccountTree';

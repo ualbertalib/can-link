@@ -7,11 +7,10 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography'
 import UnderlineLink from '@material-ui/core/Link';
-
+import Box from '@material-ui/core/Box'
 import { makeStyles } from '@material-ui/core/styles';
-
-import { SPARQL_URL, THESIS_URI } from '../constants';
-import useSPARQLThesisQuery from '../hooks/useSPARQLThesisQuery'
+import useSPARQLQuery from '../hooks/useSPARQLQuery'
+import RDFSerializationSelect from '../components/RDFSerializationSelect'
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -19,16 +18,20 @@ const useStyles = makeStyles((theme) => ({
     display: 'block'
   },
   body: {
-    fontSize: '10pt',
+    fontSize: '11pt',
     whiteSpace: 'pre'
-  }
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 200
+  },
 }));
 
-export default function RdfDialog({ recordId }) {
 
-  const thesisURI = `${THESIS_URI}${recordId}`
-  const rdfURI = SPARQL_URL.replace('{SUBJECT_URI}', thesisURI)
-  const [{ rdf }] = useSPARQLThesisQuery(rdfURI);
+export default function RdfDialog({ rdfURI }) {
+
+  const [serialization, setSerialization] = React.useState('XML');
+  const [{ rdf }, doSPARQLQueryWithSerialization ] = useSPARQLQuery(rdfURI, serialization);
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
@@ -44,7 +47,13 @@ export default function RdfDialog({ recordId }) {
     setOpen(false);
   };
 
-  
+
+  const handleSerializationChange = (newSerialization) => {
+    setSerialization(newSerialization);
+    doSPARQLQueryWithSerialization(newSerialization)
+  };
+
+
   const descriptionElementRef = React.useRef(null);
   React.useEffect(() => {
     if (open) {
@@ -67,8 +76,19 @@ export default function RdfDialog({ recordId }) {
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
       >
-        <DialogTitle id="scroll-dialog-title" className={classes.title}>
-          <div className={classes.title}>RDF</div>
+        <DialogTitle id="scroll-dialog-title" >
+          <div style={{ width: '92%' }}>
+            <Box display="flex" p={1} >
+              <Box p={1} flexGrow={1} style={{fontSize: '1.8em', color: 'grey'}}>
+                RDF
+              </Box>
+              <RDFSerializationSelect 
+              serialization={serialization} 
+              handleSerializationChange={handleSerializationChange}
+              style={{ fontSize: '.75em', color: 'grey' }}/>
+            </Box>
+          </div>
+
         </DialogTitle>
         <DialogContent dividers={true}>
           <DialogContentText
@@ -85,7 +105,7 @@ export default function RdfDialog({ recordId }) {
           </Button>
           <Button
             color="primary"
-            href={ rdfURI }>
+            href={rdfURI}>
             <Typography className={classes.body}>Download RDF</Typography>
           </Button>
         </DialogActions>

@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import AboutDialog from './AboutDialog';
 import ContactDialog from './ContactDialog';
+import DownloadDialog from './DownloadDialog';
 import canLinkLogo from '../images/CanLinklogo-gray.png';
 import { Link } from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
@@ -17,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Header() {
 
     const classes = useStyles();
-
+    
     return (
         <AppBar position="static" color="transparent" elevation={0}>
             <Toolbar>
@@ -35,6 +36,7 @@ export default function Header() {
                 </span>
                 <AboutDialog/>
                 <ContactDialog/>
+                <DownloadDialog/>
             </Toolbar>
         </AppBar>
     )

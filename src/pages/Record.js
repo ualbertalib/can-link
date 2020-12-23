@@ -3,9 +3,10 @@ import Header from '../components/Header'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import RdfDialog from '../components/RdfDialog'
+import { SPARQL_SUBJECT_URL, THESIS_URI } from '../constants';
 
 import {
-    useParams
+    useParams, Link
   } from "react-router-dom";
 import useSOLRRecordQuery from '../hooks/useSOLRRecordQuery';
 
@@ -40,6 +41,9 @@ export default function Record() {
     const [{thesis}] = useSOLRRecordQuery(recordId);
     const uni = uniMapping[thesis.institution]
     
+    const thesisURI = `${THESIS_URI}${recordId}`
+    const rdfURI = SPARQL_SUBJECT_URL.replace('{SUBJECT_URI}', thesisURI)
+
     return (
         <div><Header/>
         <div className={classes.root}>
@@ -66,8 +70,25 @@ export default function Record() {
 
         <Box fontWeight='fontWeightBold' className={classes.subheading}>Subjects</Box>
         <Typography component="div" variant="body1" gutterBottom>
-        {thesis.subject?thesis.subject.map(sub=><span style={{marginRight:'1em'}}>{sub}</span>):''} 
+        { (thesis.subject) && 
+          <Box>
+            {
+              thesis.subject.map((subject,i)=>{
+                return <Link
+                  style={{marginRight:'1em'}}
+                   
+                  color="primary"
+                  to={{ pathname: "/subject/" + thesis.subject_url[i].split('/').pop() }}>
+                            {subject}
+                </Link>
+              })
+            }
+          </Box>
+        }
         </Typography>
+        
+
+        
 
         <Box fontWeight='fontWeightBold' className={classes.subheading}>Supervisor</Box>
         <Typography component="div" variant="body1" gutterBottom>
@@ -91,7 +112,7 @@ export default function Record() {
 
         <Box fontWeight='fontWeightBold' className={classes.subheading}>View RDF</Box>
         <Typography component="div" variant="body1" gutterBottom>
-            <RdfDialog recordId={recordId}/> 
+            <RdfDialog rdfURI={rdfURI}/> 
         </Typography>
 
         <Box fontWeight='fontWeightBold' className={classes.subheading}>Abstract</Box>

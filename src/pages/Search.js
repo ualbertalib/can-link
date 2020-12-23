@@ -106,15 +106,13 @@ function Search() {
 
   const defaultYear = (new Date()).getFullYear()
 
-  const setQueryString = (params) => {
-    console.log("in set Query string and the params are: ")
-    console.log(params)
+  const setQueryString = useCallback((params) => {
     const qs = querystring.stringify(params)
     history.push({
       pathname: `/search`,
       search: `?${qs}`
     });
-  }
+  }, [history])
 
   const handleQuery = useCallback((queryInputs, page, vizName) => {
     doQuery({ ...queryInputs, page });
@@ -220,14 +218,9 @@ function Search() {
 
     <div>
       <Header />
-
       <div className="App">
-
-
         <div className={classes.root}>
-
           <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
-
             <Grid container spacing={1} style={{ paddingRight: "1vw" }} >
               <Grid item sm={6} >
                 <FormControl> <TextField style={{ width: "47.5vw" }} variant={'outlined'} type="search" label={"Query"} inputRef={register} name="query" /></FormControl>

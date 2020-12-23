@@ -5,6 +5,7 @@ import './App.css';
 import Record from './pages/Record'
 import Search from './pages/Search'
 import Landing from './pages/Landing'
+import Subject from './pages/Subject'
 
 import { UniversityListProvider } from './contexts/UniversityListContext'
 import { DegreeListProvider } from './contexts/DegreeListContext'
@@ -33,6 +34,9 @@ function App() {
               <Switch>
                 <Route exaxt path="/record/:recordId">
                   <Record/>
+                </Route>
+                <Route exact path="/subject/:subjectId">
+                  <Subject/>
                 </Route>
                 <Route exact path="/search">
                   <Search/>

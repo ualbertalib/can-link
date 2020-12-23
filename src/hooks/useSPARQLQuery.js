@@ -1,5 +1,6 @@
 import{ useState, useEffect, useReducer } from 'react';
 import axios from 'axios';
+import { HEADER_MAPPING } from '../constants'
 
 const dataFetchReducer = (state, action) => {
   switch (action.type) {
@@ -27,9 +28,12 @@ const dataFetchReducer = (state, action) => {
   }
 };
 
-const useSPARQLThesisQuery = (initialThesisURI) => {
-  const [thesisURI, setThesisURI] = useState(initialThesisURI);
 
+
+const useSPARQLQuery = (uri, initialSerialization = 'XML') => {
+ // const [uri, setUri] = useState(initialURI);
+  const [serialization, setSerialization] = useState(initialSerialization)
+  
   const [state, dispatch] = useReducer(dataFetchReducer, {
     isLoading: false,
     isError: false,
@@ -37,22 +41,20 @@ const useSPARQLThesisQuery = (initialThesisURI) => {
   });
 
   useEffect(() => {
-   
+    const acceptHeader = HEADER_MAPPING[serialization]
     let didCancel = false;
-
+  
     const fetchData = async () => {
       dispatch({ type: 'FETCH_INIT' });
 
       try {
         const result = await axios({
           method: 'get',
-          url: thesisURI,
-          headers: {'Accept': 'application/rdf+xml'}
+          url: uri,
+          headers: {'Accept': acceptHeader}
         })
-
-        const payload = {
-          response: result.data
-        }
+        const response = serialization==='json'?JSON.stringify(result.data, null, '\t'):result.data
+        const payload = { response }
 
         if (!didCancel) {
           dispatch({ type: 'FETCH_SUCCESS', payload});
@@ -64,16 +66,16 @@ const useSPARQLThesisQuery = (initialThesisURI) => {
       }
     };
 
-    if (thesisURI) {fetchData()}
+    if (uri) {fetchData()}
 
     return () => {
       didCancel = true;
     };
-  }, [thesisURI]);
+  }, [uri, serialization]);
 
-  return [state, setThesisURI];
+  return [state, setSerialization];
 };
 
-export default useSPARQLThesisQuery;
+export default useSPARQLQuery;
 
 
