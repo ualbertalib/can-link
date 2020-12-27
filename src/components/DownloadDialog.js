@@ -8,11 +8,14 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box'
+import CircularProgress from '@material-ui/core/CircularProgress';
 import RDFSerializationSelect from './RDFSerializationSelect';
 import axios from 'axios';
 import fileDownload from 'js-file-download';
 
-import { SPARQL_URL, HEADER_MAPPING } from '../constants';
+
+import { HEADER_MAPPING } from '../constants';
 
 const styles = (theme) => ({
   root: {
@@ -51,12 +54,13 @@ const useStyles = makeStyles((theme) => ({
   buttons: {
         fontSize: '11pt',
         backgroundColor: '#A8DBF6',
-        marginLeft: '1em'
+        marginLeft: '1em',
+        minWidth: 200
     }
 }));
 
 
-export default function DownloadDialog() {
+export default function DownloadDialog({downloadLink, message, buttonName, minWidth = 200}) {
   const classes = useStyles();
 
   const [serialization, setSerialization] = React.useState('XML');
@@ -78,7 +82,7 @@ export default function DownloadDialog() {
   const doDownload = () => {
     setIsDownloading(true)
     const acceptHeader = HEADER_MAPPING[serialization]
-    axios.get(SPARQL_URL, {
+    axios.get(downloadLink, {
       responseType: 'blob',
       headers: {'Accept': acceptHeader}
     })
@@ -91,23 +95,24 @@ export default function DownloadDialog() {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen} className={classes.buttons}>
-      Download Full Dataset
+      <Button variant="outlined" color="primary" onClick={handleClickOpen} className={classes.buttons} >
+      {buttonName}
       </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-        Download Full RDF dataset from CanLink triplestore
+        Download RDF from CanLink triplestore
         </DialogTitle>
         <DialogContent dividers>
         <Typography gutterBottom color='secondary' variant='h2'>
+        {isDownloading && <Box display="flex" justifyContent="center" m={2} p={2}><CircularProgress color="secondary" /></Box>}
            {isDownloading && "Your file is downloading!  It may take a while. We'll let you know when it's done."}
            {isDownloadDone && 'Your file has been downloaded.'}
         </Typography>
           <Typography gutterBottom>
-            The download is quite large and so may take quite some time to download.  For reference the XML dataset is approximately 1 Gigabyte in size.
+            {message}
           </Typography>
           <Typography gutterBottom>
-            You may also choose from several other serializations. 
+            You may also choose from several serializations. 
            </Typography>       
           <Typography gutterBottom>
               <RDFSerializationSelect serialization={serialization} handleSerializationChange={handleSerializationChange}/>

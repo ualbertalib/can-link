@@ -8,6 +8,8 @@ import ContactDialog from './ContactDialog';
 import DownloadDialog from './DownloadDialog';
 import canLinkLogo from '../images/CanLinklogo-gray.png';
 import { Link } from 'react-router-dom'
+import { SPARQL_URL } from '../constants';
+
 const useStyles = makeStyles((theme) => ({
     logo: {
       flex: 1,
@@ -36,7 +38,7 @@ export default function Header() {
                 </span>
                 <AboutDialog/>
                 <ContactDialog/>
-                <DownloadDialog/>
+                <DownloadDialog downloadLink={SPARQL_URL} buttonName='Download Full Dataset' message='The download of the full CanLink dataset is quite large and so may take a while to download.  For reference the XML dataset is approximately 1 Gigabyte in size.'/>
             </Toolbar>
         </AppBar>
     )

@@ -3,6 +3,7 @@ import Header from '../components/Header'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import RDFSerializationSelect from '../components/RDFSerializationSelect'
+import DownloadDialog from '../components/DownloadDialog'
 
 import { SPARQL_SUBJECT_URL, SUBJECT_URI } from '../constants';
 import useSPARQLQuery from '../hooks/useSPARQLQuery'
@@ -81,13 +82,15 @@ export default function Subject() {
               <Box p={1} flexGrow={1} style={{fontSize: '1.8em', color: 'grey'}}>
                 RDF for subject: {label}
               </Box>
-              <RDFSerializationSelect serialization={serialization} handleSerializationChange={handleSerializationChange}/>
+              <Box>
+                <RDFSerializationSelect serialization={serialization} handleSerializationChange={handleSerializationChange}/>
+                <DownloadDialog width={220} downloadLink={rdfURI} message='The download should be fairly quick.' buttonName='Download RDF'/>
+              </Box>
             </Box>
           </div>
         <Typography gutterBottom className={classes.rdf}>
             {rdf}
         </Typography> 
-
         </div>
          </div>
         </div>

@@ -11,6 +11,7 @@ import Box from '@material-ui/core/Box'
 import { makeStyles } from '@material-ui/core/styles';
 import useSPARQLQuery from '../hooks/useSPARQLQuery'
 import RDFSerializationSelect from '../components/RDFSerializationSelect'
+import DownloadDialog from '../components/DownloadDialog'
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -25,6 +26,12 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 200
   },
+  buttons: {
+          fontSize: '11pt',
+          backgroundColor: '#A8DBF6',
+          marginLeft: '1em',
+          minWidth: 200
+      }
 }));
 
 
@@ -100,13 +107,9 @@ export default function RdfDialog({ rdfURI }) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <DownloadDialog downloadLink={rdfURI} message='The download should be fairly quick.' buttonName='Download RDF'/>
+          <Button onClick={handleClose} variant="outlined" color="primary" className={classes.buttons}>
             <Typography className={classes.body}>Close</Typography>
-          </Button>
-          <Button
-            color="primary"
-            href={rdfURI}>
-            <Typography className={classes.body}>Download RDF</Typography>
           </Button>
         </DialogActions>
       </Dialog>
