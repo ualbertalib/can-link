@@ -4,7 +4,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import FileCopyRoundedIcon from '@material-ui/icons/FileCopyRounded';
 import { EmailShareButton, EmailIcon, TwitterShareButton, TwitterIcon, FacebookIcon, FacebookShareButton, LinkedinShareButton, LinkedinIcon } from 'react-share';
-
+import querystring from 'query-string';
 import { makeStyles } from '@material-ui/core/styles';
 
 const shareIconProps = {
@@ -28,10 +28,15 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-export default function Shares() {
+export default function Shares({queryParams}) {
 
     const classes = useStyles();
+    const params = querystring.parse(queryParams)
 
+    const hashes = Object.entries(params)
+        .filter(param=>param[0] != 'page' && param[0] != 'visualization')
+        .map(param=>{return param[1].replaceAll(' ', '-')})
+   
     return <Box style={{
         display: 'flex',
         alignItems: 'center',
@@ -50,7 +55,7 @@ export default function Shares() {
             <TwitterShareButton 
                 url={window.location.href} 
                 title={shareTitle} 
-                hashtags={['canlink']} >
+                hashtags={['canlink', ...hashes]} >
                 <TwitterIcon {...shareIconProps} className={classes.shareIcons} />
             </TwitterShareButton>
         </Tooltip>

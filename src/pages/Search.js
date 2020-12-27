@@ -296,7 +296,7 @@ function Search() {
 
                         <Typography component="span"
                           variant="body2" className={classes.paging}>
-                         <Shares/>
+                         <Shares queryParams={location.search}/>
                           {response.numFound} results - showing page {response.start / 10 + 1} of {Math.ceil(response.numFound / 10)}</Typography>
 
                         <div className={classes.demo}>
