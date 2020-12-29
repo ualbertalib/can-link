@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function DegreeSelect({setValue, width, inputValue, setInputValue}) {
+export default function DegreeSelect({setValue, width, inputValue, setInputValue, doSearch}) {
   
   const [degreeList] = useContext(DegreeListContext)
   const classes = useStyles();
@@ -36,6 +36,7 @@ export default function DegreeSelect({setValue, width, inputValue, setInputValue
       onChange={(event, newInputValue) => {
         setValue("Degree", newInputValue);
         setInputValue(newInputValue)
+        doSearch()
       }}
       getOptionLabel={(option) => option}
       renderOption={(option) => (

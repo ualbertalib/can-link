@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function UniversitySelect({setValue, width, inputValue, setInputValue}) {
+export default function UniversitySelect({setValue, width, inputValue, setInputValue, doSearch}) {
   const [uniMapping] = useContext(UniversityListContext)
   const universities = Object.entries(uniMapping).map(uni=>uni[1].short_name)
   const classes = useStyles();
@@ -40,6 +40,7 @@ export default function UniversitySelect({setValue, width, inputValue, setInputV
       onChange={(event, newInputValue) => {
         setValue("Institution", newInputValue);
         setInputValue(newInputValue)
+        doSearch()
       }}
       getOptionLabel={(option) => option}
       renderOption={(option) => (

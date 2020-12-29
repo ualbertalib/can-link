@@ -7,7 +7,7 @@ import axios from 'axios';
 import {SOLR_URL} from '../constants'
 
 // NOTE:  we pass the inputValue and setInputValue in from the parent to allow the parent to reset the form
-export default function Suggester({title, setValue, width, suggestType, inputValue, setInputValue}) {
+export default function Suggester({title, setValue, width, suggestType, inputValue, setInputValue, doSearch}) {
   
   const [typedChars, setTypedChars] = React.useState('');
   const [options, setOptions] = React.useState([]);
@@ -85,6 +85,7 @@ export default function Suggester({title, setValue, width, suggestType, inputVal
         setValue(title, newValue);
         setOptions(newValue ? [newValue, ...options] : options);
         setInputValue(newValue);
+        doSearch()
       }}
       onInputChange={(event, newInputValue) => {
         setTypedChars(newInputValue);

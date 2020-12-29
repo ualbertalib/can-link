@@ -4,8 +4,10 @@ import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import RDFSerializationSelect from '../components/RDFSerializationSelect'
 import DownloadDialog from '../components/DownloadDialog'
+import List from '@material-ui/core/List';
+import ThesisDialog from '../components/ThesisDialog'
 
-import { SPARQL_SUBJECT_URL, SUBJECT_URI } from '../constants';
+import { SOLR_QUERY_URL, SPARQL_SUBJECT_URL, SUBJECT_URI } from '../constants';
 import useSPARQLQuery from '../hooks/useSPARQLQuery'
 
 import axios from 'axios';
@@ -53,6 +55,7 @@ export default function Subject() {
     
     const [serialization, setSerialization] = React.useState('json');
     const [label, setLabel] = React.useState('')
+    const [referencedTheses, setReferencedTheses] = React.useState([])
     //const [{ rdf: jsonLD}] = useSPARQLQuery(rdfURI, 'json');
     const [{ rdf }, doSPARQLQueryWithSerialization ] = useSPARQLQuery(rdfURI, serialization);
 
@@ -68,7 +71,16 @@ export default function Subject() {
             url: rdfURI,
             headers: {'Accept': HEADER_MAPPING.json}
           })
-          setLabel(result.data[subjectURI]['http://www.w3.org/2000/01/rdf-schema#label'][0].value) 
+          const theLabel = result.data[subjectURI]['http://www.w3.org/2000/01/rdf-schema#label'][0].value
+          setLabel(theLabel)
+          const thesesWithSubject = await axios({
+            method: 'get',
+            url: SOLR_QUERY_URL + `subject_str:"${theLabel}"`
+          })
+         
+          setReferencedTheses(thesesWithSubject.data.response.docs)
+          
+
       };
       fetchData()
     }, []);
@@ -91,6 +103,19 @@ export default function Subject() {
         <Typography gutterBottom className={classes.rdf}>
             {rdf}
         </Typography> 
+        <Box p={1} flexGrow={1} style={{fontSize: '1.8em', color: 'grey'}}>
+                Theses with this subject
+        </Box>
+
+        <div className={classes.demo}>
+                          <List dense={true}>
+                            {referencedTheses.map(thesis => (
+                              <ThesisDialog key={thesis.id} thesis={thesis} />))}
+                          </List>
+                        </div>
+
+
+       
         </div>
          </div>
         </div>

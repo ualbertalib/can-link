@@ -90,11 +90,12 @@ function Search() {
 
   // these next four are created here and passed into the corresponding AutoSelects
   // so that we can reset the values on the AutoSelects from this Search page.
+  
+
   const [author, setAuthor] = useState([])
   const [subject, setSubject] = useState([])
   const [degree, setDegree] = useState([])
   const [university, setUniversity] = useState([])
-
 
   // make it easier to get the right setter for a given controlled field
   // when setting controlled field values from clicks on visualizations
@@ -125,6 +126,10 @@ function Search() {
 
   const handlePageChange = (page) => {
     handleSubmit(queryInputs => handleQuery(queryInputs, page - 1, visualization))()
+  }
+
+  const doSearch = () => {
+    handleSubmit(queryInputs => handleQuery(queryInputs, 0, visualization))()
   }
 
   // sets the value in react-hook-form,
@@ -227,21 +232,21 @@ function Search() {
               </Grid>
 
               <Grid item sm={3} >
-                <FormControl> <Suggester width='23vw' title={'Author'} suggestType="agents" setValue={setValue} inputValue={author} setInputValue={setAuthor} /> </FormControl>
+                <FormControl> <Suggester width='23vw' title={'Author'} suggestType="agents" setValue={setValue} inputValue={author} setInputValue={setAuthor} doSearch={doSearch} /> </FormControl>
               </Grid>
 
               <Grid item sm={3} >
-                <FormControl> <DegreeSelect width='23vw' setValue={setValue} inputValue={degree} setInputValue={setDegree} /> </FormControl>
+                <FormControl> <DegreeSelect width='23vw' setValue={setValue} inputValue={degree} setInputValue={setDegree} doSearch={doSearch}/> </FormControl>
               </Grid>
 
             </Grid>
             <Grid container spacing={1} style={{ paddingRight: "1vw" }} >
               <Grid item sm={3} >
-                <FormControl> <UniversitySelect width='23vw' setValue={setValue} inputValue={university} setInputValue={setUniversity} /> </FormControl>
+                <FormControl> <UniversitySelect width='23vw' setValue={setValue} inputValue={university} setInputValue={setUniversity} doSearch={doSearch}/> </FormControl>
               </Grid>
 
               <Grid item sm={3} >
-                <FormControl> <Suggester width='23vw' title={'Subject'} suggestType="subjects" setValue={setValue} inputValue={subject} setInputValue={setSubject} /> </FormControl>
+                <FormControl> <Suggester width='23vw' title={'Subject'} suggestType="subjects" setValue={setValue} inputValue={subject} setInputValue={setSubject} doSearch={doSearch}/> </FormControl>
               </Grid>
 
               <Grid item sm={3}  >
@@ -256,6 +261,7 @@ function Search() {
                     label={"From Year"}
                     inputRef={register({ min: 1900, max: 9999 })}
                     name="from"
+                    onChange={doSearch}
                   />
                 </FormControl>
                 <FormControl>
@@ -269,6 +275,7 @@ function Search() {
                     inputRef={register({ min: 1900, max: 9999 })}
                     name="to"
                     defaultValue={defaultYear}
+                    onChange={doSearch}
                   />
                 </FormControl>
               </Grid>
