@@ -72,13 +72,10 @@ export default function AboutDialog() {
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
-          CanLink is an initiative to increase the discoverability of Canadian theses and dissertations by leveraging the power of linked data to surface unexpected connections and relationships. 
+          CanLink is an initiative to increase the discoverability of Canadian theses and dissertations by leveraging the power of linked data to surface unexpected connections and relationships. The initial proof of concept was developed as part of the <a href="https://connect.library.utoronto.ca/display/U5LD/Canadian+Linked+Data+Initiative+Home">Canadian Linked Data Initiative</a>; the current initiative has built on this work and is maintained and developed by the <a href="https://library.ualberta.ca/">University of Alberta Library</a>.
           </Typography>
           <Typography gutterBottom>
-          The initial proof of concept was developed as part of the Canadian Linked Data Initiative.
-          </Typography>
-          <Typography gutterBottom>
-          The current initiative has built on this work and is maintained and developed by the University of Alberta Library.
+          2020 saw major enhancements to the design and development, addition of more data, and refinement of processes and workflows. All of this is designed to improve the user experience and enable sustainable growth over time. 
           </Typography>
         </DialogContent>
       </Dialog>
