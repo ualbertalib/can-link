@@ -1,4 +1,4 @@
-export const SERVER_URL = 'http://198.168.187.81/'
+export const SERVER_URL = 'http://198.168.187.81'
 export const CAN_LINK_URI = 'http://canlink.library.ualberta.ca/'
 export const THESIS_URI = `${CAN_LINK_URI}thesis/`
 export const SUBJECT_URI = `${CAN_LINK_URI}subject/`
